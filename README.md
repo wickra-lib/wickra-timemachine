@@ -106,8 +106,14 @@ See [`examples/`](examples/) for the same program in all ten languages.
 
 ## Documentation
 
-- [ARCHITECTURE.md](ARCHITECTURE.md) — the crates and the re-fold pipeline.
-- [BENCHMARKS.md](BENCHMARKS.md) — snapshots per second, and how to reproduce them.
+- [docs/SEEK.md](docs/SEEK.md) — the seek / re-fold pipeline in depth.
+- [docs/SNAPSHOTS.md](docs/SNAPSHOTS.md) — the `MarketSnapshot` output shape.
+- [docs/DATASETS.md](docs/DATASETS.md) — the recorded-universe wire format.
+- [docs/INDICATORS.md](docs/INDICATORS.md) — declaring and folding indicators.
+- [docs/DETERMINISM.md](docs/DETERMINISM.md) — why reconstruction is byte-identical.
+- [docs/Cookbook.md](docs/Cookbook.md) — task-oriented recipes.
+- [ARCHITECTURE.md](ARCHITECTURE.md) — the crates and how they fit together.
+- [BENCHMARKS.md](BENCHMARKS.md) — measured throughput and how to reproduce it.
 - [THREAT_MODEL.md](THREAT_MODEL.md) — the trust boundary and resource limits.
 - [golden/README.md](golden/README.md) — the blessed cross-language corpus.
 - Full documentation: [wickra.org](https://wickra.org).
