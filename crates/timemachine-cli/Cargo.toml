@@ -1,0 +1,20 @@
+[package]
+name = "timemachine-cli"
+description = "Command-line front end for the Wickra Time Machine — seek a recorded market universe to any past moment."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[[bin]]
+name = "wickra-timemachine"
+path = "src/main.rs"
+
+[dependencies]
+timemachine-core = { path = "../timemachine-core" }
+clap = { workspace = true }
+
+[lints]
+workspace = true

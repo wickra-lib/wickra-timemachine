@@ -1,0 +1,27 @@
+[package]
+name = "timemachine-bench"
+description = "Criterion micro-benchmarks for the Wickra Time Machine re-fold engine."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+
+[dependencies]
+timemachine-core = { path = "../timemachine-core" }
+
+[dev-dependencies]
+criterion = { workspace = true }
+
+[features]
+default = ["parallel"]
+parallel = ["timemachine-core/parallel"]
+
+[[bench]]
+name = "timemachine"
+harness = false
+
+[lints]
+workspace = true

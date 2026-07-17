@@ -1,0 +1,13 @@
+/target
+/fuzz/target
+/fuzz/Cargo.lock
+bindings/go/lib/*/
+bindings/r/src/*.o
+bindings/r/src/*.so
+bindings/r/src/*.dll
+**/*.node
+__pycache__
+bindings/wasm/pkg
+web/node_modules
+web/dist
+dist

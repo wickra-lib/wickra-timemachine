@@ -1,0 +1,24 @@
+[package]
+name = "timemachine-core"
+description = "Deterministic market time machine: reconstruct the full microstructure state of a whole crypto universe at any past moment via O(1) re-fold."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+rayon = { workspace = true, optional = true }
+
+[features]
+default = ["parallel"]
+# The multi-symbol re-fold fans out across symbols with rayon. The single-threaded
+# path (default features off, the WASM build) produces byte-identical snapshots.
+parallel = ["dep:rayon"]
+
+[lints]
+workspace = true
