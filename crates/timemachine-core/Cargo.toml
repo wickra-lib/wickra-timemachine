@@ -12,7 +12,14 @@ authors.workspace = true
 serde = { workspace = true }
 serde_json = { workspace = true }
 thiserror = { workspace = true }
+rust_decimal = { workspace = true }
+wickra-core = { workspace = true }
+wickra-exchange-core = { workspace = true }
 rayon = { workspace = true, optional = true }
+
+[dev-dependencies]
+proptest = { workspace = true }
+rust_decimal_macros = { workspace = true }
 
 [features]
 default = ["parallel"]
