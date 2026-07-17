@@ -6,6 +6,7 @@ members = [
     "crates/timemachine-bench",
     "bindings/c",
     "bindings/python",
+    "bindings/node",
 ]
 
 [workspace.package]
