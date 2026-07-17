@@ -11,3 +11,5 @@ bindings/wasm/pkg
 web/node_modules
 web/dist
 dist
+node_modules/
+bindings/node/*.node
