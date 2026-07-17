@@ -1,0 +1,8 @@
+{"ts":1700000000,"symbol":"AAA-USDT","feed":{"kind":"market","type":"book_snapshot","symbol":{"base":"AAA","quote":"USDT"},"last_update_id":1,"bids":[{"price":"100.0","quantity":"2.0"}],"asks":[{"price":"100.5","quantity":"1.0"}]}}
+{"ts":1700000000,"symbol":"BBB-USDT","feed":{"kind":"market","type":"book_snapshot","symbol":{"base":"BBB","quote":"USDT"},"last_update_id":1,"bids":[{"price":"50.0","quantity":"3.0"}],"asks":[{"price":"50.2","quantity":"1.5"}]}}
+{"ts":1700000100,"symbol":"AAA-USDT","feed":{"kind":"market","type":"trade","symbol":{"base":"AAA","quote":"USDT"},"price":"100.4","quantity":"0.5","aggressor":"Buy","timestamp":1700000100}}
+{"ts":1700000200,"symbol":"AAA-USDT","feed":{"kind":"market","type":"book_delta","symbol":{"base":"AAA","quote":"USDT"},"first_update_id":2,"final_update_id":2,"bids":[{"price":"100.1","quantity":"1.0"}],"asks":[{"price":"100.5","quantity":"0"}]}}
+{"ts":1700000300,"symbol":"BBB-USDT","feed":{"kind":"funding","rate":0.0001,"mark_price":50.1}}
+{"ts":1700000600,"symbol":"AAA-USDT","feed":{"kind":"market","type":"trade","symbol":{"base":"AAA","quote":"USDT"},"price":"100.2","quantity":"1.0","aggressor":"Sell","timestamp":1700000600}}
+{"ts":1700000600,"symbol":"BBB-USDT","feed":{"kind":"market","type":"book_delta","symbol":{"base":"BBB","quote":"USDT"},"first_update_id":2,"final_update_id":2,"bids":[{"price":"50.1","quantity":"2.0"}],"asks":[{"price":"50.2","quantity":"1.0"}]}}
+{"ts":1700000700,"symbol":"AAA-USDT","feed":{"kind":"market","type":"book_delta","symbol":{"base":"AAA","quote":"USDT"},"first_update_id":3,"final_update_id":3,"bids":[{"price":"100.3","quantity":"0.8"}],"asks":[{"price":"100.6","quantity":"0.9"}]}}
