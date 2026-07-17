@@ -1,0 +1,17 @@
+[package]
+name = "wickra-timemachine-example"
+description = "A runnable Rust example for the Wickra Time Machine."
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Detached from the parent workspace so the example builds on its own.
+[workspace]
+
+[[bin]]
+name = "seek"
+path = "src/main.rs"
+
+[dependencies]
+timemachine-core = { path = "../../crates/timemachine-core", default-features = false }
+serde_json = "1"
