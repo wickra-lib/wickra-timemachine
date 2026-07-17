@@ -1,0 +1,46 @@
+[package]
+name = "wickra-timemachine-wasm"
+description = "WebAssembly bindings for wickra-timemachine — reconstruct market microstructure in the browser."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+readme = "README.md"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+# Modern rustc emits a wasm feature set (bulk-memory, sign-ext, …) that the
+# wasm-opt bundled with wasm-pack is too old to validate. The wasm-bindgen output
+# is already valid and functional; skip the optional size-only optimizer pass.
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+# Mirrors [workspace.lints] clippy set, plus the binding-shaped allows: the
+# wasm-bindgen surface returns `Result`/owned values that pedantic would flag for
+# `# Errors` / `#[must_use]` docs the JS boundary does not need.
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+module_name_repetitions = "allow"
+must_use_candidate = "allow"
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+
+[dependencies]
+# The time-machine core as a direct path dep (not `workspace = true`) so
+# `default-features = false` is honored — cargo silently ignores it on an
+# inherited workspace dependency. Default features off means no rayon (the
+# re-fold is single-threaded here), so a wasm build is byte-identical to the
+# native one — the exact cross-language golden check.
+timemachine-core = { path = "../../crates/timemachine-core", version = "0.1", default-features = false }
+wasm-bindgen = "0.2"
+
+# `wickra-exchange-core` (a transitive dependency via the time-machine core, for
+# the market types) pulls `p256`/`getrandom`; getrandom needs its `js` backend to
+# compile for the browser. This applies only to wasm32 builds.
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { version = "0.2", features = ["js"] }
