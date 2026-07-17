@@ -1,0 +1,16 @@
+Package: wickratimemachine
+Type: Package
+Title: Reconstruct Recorded Crypto Market Microstructure at Any Past Moment
+Version: 0.1.0
+Authors@R: person("kingchenc", role = c("aut", "cre"), email = "support@wickra.org")
+Description: R bindings for wickra-timemachine over its C ABI hub: a deterministic
+    re-fold reconstructs the byte-identical market microstructure snapshot at any
+    recorded timestamp - the same protocol as the CLI and every other binding.
+License: MIT + file LICENSE | Apache License 2.0
+URL: https://github.com/wickra-lib/wickra-timemachine
+BugReports: https://github.com/wickra-lib/wickra-timemachine/issues
+Encoding: UTF-8
+NeedsCompilation: yes
+SystemRequirements: the wickra-timemachine C ABI shared library (WKTIMEMACHINE_LIB)
+    and its header (WKTIMEMACHINE_INC).
+RoxygenNote: 7.3.2

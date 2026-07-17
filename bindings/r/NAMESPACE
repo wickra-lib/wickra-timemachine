@@ -1,0 +1,4 @@
+useDynLib(wickratimemachine, .registration = TRUE, .fixes = "C_")
+export(wktimemachine_version)
+export(wktimemachine_new)
+export(wktimemachine_command)
