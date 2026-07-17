@@ -7,6 +7,7 @@ members = [
     "bindings/c",
     "bindings/python",
     "bindings/node",
+    "bindings/wasm",
 ]
 
 [workspace.package]
