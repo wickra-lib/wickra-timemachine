@@ -1,0 +1,1 @@
+{ "book_depth": 10, "tape_cap": 64, "indicators": [{ "name": "Rsi", "params": [2] }], "snapshot_interval": 1 }

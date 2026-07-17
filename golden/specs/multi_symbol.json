@@ -1,0 +1,1 @@
+{ "book_depth": 10, "tape_cap": 64, "indicators": [{ "name": "Sma", "params": [2] }], "snapshot_interval": 4 }
