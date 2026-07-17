@@ -19,11 +19,11 @@
 // A panic was caught at the FFI boundary.
 #define WICKRA_TIMEMACHINE_ERR_PANIC -3
 
-// An opaque handle to a search instance. Created by [`wickra_timemachine_new`] and
+// An opaque handle to a time-machine instance. Created by [`wickra_timemachine_new`] and
 // destroyed by [`wickra_timemachine_free`]; never dereferenced by the caller.
 //
 // The handle caches the most recent command's response in `pending` so the
-// two-call length protocol does not run the (potentially expensive) evolution
+// two-call length protocol does not run the (potentially expensive) re-fold
 // twice. The cache is keyed on the raw command bytes and cleared once the
 // response has been delivered.
 typedef struct WickraTimeMachine WickraTimeMachine;
@@ -32,7 +32,7 @@ typedef struct WickraTimeMachine WickraTimeMachine;
 extern "C" {
 #endif // __cplusplus
 
-// Construct a search handle from a spec JSON (`"{}"` defers configuration to a
+// Construct a time-machine handle from a spec JSON (`"{}"` defers configuration to a
 // later `set_spec`). Returns null on a null / non-UTF-8 / invalid spec. Free it
 // with [`wickra_timemachine_free`].
 //
@@ -40,7 +40,7 @@ extern "C" {
 // `spec_json` must be null or a valid NUL-terminated C string.
 WickraTimeMachine *wickra_timemachine_new(const char *spec_json);
 
-// Destroy a search handle. Null is a no-op.
+// Destroy a time-machine handle. Null is a no-op.
 //
 // # Safety
 // `handle` must be null or a handle previously returned by
