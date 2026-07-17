@@ -13,3 +13,16 @@ web/dist
 dist
 node_modules/
 bindings/node/*.node
+bindings/r/.rlib/
+bindings/r/..Rcheck/
+# .NET build artifacts
+bin/
+obj/
+# Java build artifacts
+bindings/java/target/
+# Example build artifacts
+examples/rust/target/
+examples/c/build/
+examples/java/target/
+examples/csharp/**/bin/
+examples/csharp/**/obj/
