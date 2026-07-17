@@ -1,18 +1,20 @@
-//! The `wickra-timemachine` command-line front end.
-//!
-//! Scaffold surface: prints the core version. The `--dataset` / `--seek` /
-//! `--format` seek interface over a recorded market universe lands in the CLI
-//! phase, forwarding to `timemachine_core`'s `command_json` seam.
+//! The `wickra-timemachine` command-line front end: seek a recorded market
+//! universe to any past moment and print its reconstructed microstructure.
+
+mod args;
+mod run;
+
+use std::process::ExitCode;
 
 use clap::Parser;
 
-/// Seek a recorded crypto-market universe to any past moment and print its
-/// reconstructed microstructure snapshot.
-#[derive(Parser)]
-#[command(name = "wickra-timemachine", version, about)]
-struct Cli;
-
-fn main() {
-    let _ = Cli::parse();
-    println!("wickra-timemachine {}", timemachine_core::version());
+fn main() -> ExitCode {
+    let cli = args::Cli::parse();
+    match run::run(&cli) {
+        Ok(()) => ExitCode::SUCCESS,
+        Err(message) => {
+            eprintln!("error: {message}");
+            ExitCode::FAILURE
+        }
+    }
 }
