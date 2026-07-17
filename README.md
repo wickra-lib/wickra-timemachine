@@ -3,6 +3,8 @@
 </p>
 
 [![Built on Wickra](https://img.shields.io/badge/built%20on-wickra-3b82f6)](https://github.com/wickra-lib/wickra)
+[![CI](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/ci.yml/badge.svg)](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/codeql.yml/badge.svg)](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/codeql.yml)
 [![Status](https://img.shields.io/badge/status-pre--release-orange)](https://github.com/wickra-lib/wickra-timemachine)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
 [![OpenSSF Scorecard](https://img.shields.io/badge/OpenSSF-Scorecard-3b82f6)](https://scorecard.dev/viewer/?uri=github.com/wickra-lib/wickra-timemachine)
@@ -29,19 +31,104 @@ recorded universe, `seek(t)`, and it re-folds every symbol's orderbook, tape and
 funding state deterministically to that instant. Because the engine is O(1) per
 event, seeking scales to the whole market. The core is exposed as a
 **JSON-over-C-ABI data API** (`command_json`) in **Rust, Python, Node.js, WASM,
-C, C++, C#, Go, Java and R**, plus a reference CLI and a web scrubber frontend.
+C, C++, C#, Go, Java and R**, plus a reference CLI.
 
 ## Status
 
-Early development (0.1.0, unreleased). This scaffold pins the repository,
-governance and supply-chain configuration ahead of the re-fold core, the CLI, the
-ten language bindings, the golden harness and the web scrubber.
+Early development (0.1.0, unreleased). The re-fold core, the reference CLI, the
+ten-language binding surface, the golden corpus and the full CI matrix are in
+place; the first published release is still pending, and the web scrubber
+front-end is a later phase.
+
+## How it works
+
+A recorded universe is a JSONL stream of `Record`s: one line per event, each with
+a venue timestamp, a symbol key, and a `Feed` payload — a market event (a trade
+or an order-book snapshot/delta, re-exported from `wickra-exchange-core`) or a
+funding print. A `TimelineSpec` names the book depth, the tape cap, the
+indicators to fold on each symbol's trade price, and how often to drop a re-fold
+anchor. To `seek(t)`, the core:
+
+1. binary-searches the sorted records for the last event with `ts <= t`;
+2. jumps to the nearest anchor at or before that index (bounding backward-seek
+   cost to `snapshot_interval`);
+3. re-folds the event prefix per symbol — applying book deltas, pushing trades
+   onto a bounded tape, advancing the indicator set, tracking funding — fanning
+   out across symbols with `rayon`;
+4. materialises a `MarketSnapshot`: per symbol, the depth-capped book ladder, the
+   recent tape, the footprint, the latest funding, and the indicator values.
+
+`play(from, to, step)` returns one snapshot per step; a `seek(t)` is byte-identical
+to the `play` frame that lands on `t`.
+
+## Determinism
+
+Reconstruction is the golden moat: records are held in ordered collections, the
+per-symbol maps are `BTreeMap`s, floats are rounded to a fixed grid and non-finite
+values collapse to `0.0`, and the snapshot serialises canonically. The same feed +
+spec yields a **byte-identical `MarketSnapshot`** on every run, and — because each
+binding forwards the command string verbatim — in every language. The
+`rayon`-parallel re-fold and the single-threaded (`--no-default-features`, WASM)
+path are byte-identical by construction, since each symbol folds independently.
+
+## Quickstart
+
+```bash
+# Reconstruct the recorded mini universe at a past timestamp (compact JSON).
+wickra-timemachine --dataset golden/data/mini --spec golden/specs/mini.json --seek 1700000600 --format json
+
+# The same seek as a human-readable book ladder, tape and funding per symbol.
+wickra-timemachine --dataset golden/data/mini --spec golden/specs/mini.json --seek 1700000600 --format text
+
+# Play a range: one snapshot every step, from an anchor sweep.
+wickra-timemachine --dataset golden/data/mini --spec golden/specs/play.json --play 1700000000 1700000700 100 --format json
+```
 
 ## Use in any language
 
-The same handle + `command_json` + `version` surface ships for every supported
-language; each binding forwards the command string verbatim, so seeking to the
-same timestamp yields a byte-identical snapshot in all of them.
+The same handle + `command_json` + `version` surface ships for Rust, Python,
+Node.js, WASM, and — over a C ABI hub — C, C++, C#, Go, Java and R. Each binding
+passes the command string through verbatim, so the `MarketSnapshot` they return
+is identical.
+
+```python
+import json
+from wickra_timemachine import TimeMachine
+
+feed = "\n".join(json.dumps(r) for r in records)  # JSONL of {"ts","symbol","feed"}
+tm = TimeMachine("{}")
+tm.command(json.dumps({"cmd": "load", "data": feed}))
+snap = json.loads(tm.command(json.dumps({"cmd": "seek", "ts": 1700000600})))
+print(snap["symbols"]["BTC-USDT"]["last"])
+```
+
+See [`examples/`](examples/) for the same program in all ten languages.
+
+## Documentation
+
+- [docs/SEEK.md](docs/SEEK.md) — the seek / re-fold pipeline in depth.
+- [docs/SNAPSHOTS.md](docs/SNAPSHOTS.md) — the `MarketSnapshot` output shape.
+- [docs/DATASETS.md](docs/DATASETS.md) — the recorded-universe wire format.
+- [docs/INDICATORS.md](docs/INDICATORS.md) — declaring and folding indicators.
+- [docs/DETERMINISM.md](docs/DETERMINISM.md) — why reconstruction is byte-identical.
+- [docs/Cookbook.md](docs/Cookbook.md) — task-oriented recipes.
+- [ARCHITECTURE.md](ARCHITECTURE.md) — the crates and how they fit together.
+- [BENCHMARKS.md](BENCHMARKS.md) — measured throughput and how to reproduce it.
+- [THREAT_MODEL.md](THREAT_MODEL.md) — the trust boundary and resource limits.
+- [golden/README.md](golden/README.md) — the blessed cross-language corpus.
+- Full documentation: [wickra.org](https://wickra.org).
+
+## Project layout
+
+```
+crates/timemachine-core   the library: events, spec, per-symbol fold, seek, snapshot
+crates/timemachine-cli    the wickra-timemachine CLI
+crates/timemachine-bench  criterion micro-benchmarks (snapshots/second)
+bindings/*                ten language surfaces (c, python, node, wasm, csharp, go, java, r)
+golden/                   feeds + specs + blessed snapshots (the cross-language corpus)
+examples/                 one runnable example per language
+fuzz/                     libFuzzer targets (spec parse, event fold, seek, command)
+```
 
 ## Building from source
 
@@ -49,6 +136,12 @@ same timestamp yields a byte-identical snapshot in all of them.
 cargo build
 cargo test
 ```
+
+## Benchmarks
+
+The headline figure is **snapshots per second** — the rate at which the Time
+Machine re-folds a multi-symbol universe to a target instant. See
+[BENCHMARKS.md](BENCHMARKS.md); reproduce with `cargo bench -p timemachine-bench`.
 
 ## Requirements
 
@@ -59,11 +152,18 @@ cargo test
 ## Security
 
 See [SECURITY.md](SECURITY.md) and [THREAT_MODEL.md](THREAT_MODEL.md). The Time
-Machine reads recorded market data only — no keys, no order placement.
+Machine reads recorded market data only — no keys, no order placement — and
+folds untrusted feeds under explicit depth/tape/anchor bounds.
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Disclaimer
+
+Wickra Time Machine is a research tool, provided "as is" without warranty of any
+kind. It reconstructs recorded market microstructure for analysis; nothing here is
+financial advice, and trading carries risk of loss.
 
 ## License
 
