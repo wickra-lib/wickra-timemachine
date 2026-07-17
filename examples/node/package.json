@@ -1,0 +1,9 @@
+{
+  "name": "wickra-timemachine-example-node",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A runnable Node.js example for wickra-timemachine.",
+  "type": "commonjs",
+  "scripts": { "start": "node seek.js" },
+  "dependencies": { "wickra-timemachine": "^0.1.0" }
+}
