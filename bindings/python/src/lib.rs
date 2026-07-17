@@ -15,7 +15,7 @@ use pyo3::prelude::*;
 
 use timemachine_core::TimeMachine;
 
-/// An evolutionary search driven by JSON commands.
+/// A recorded-market time machine driven by JSON commands.
 ///
 /// `unsendable`: the handle caches the last report, so it is bound to the thread
 /// that created it.
