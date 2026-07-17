@@ -13,7 +13,7 @@ name = "wickra-timemachine"
 path = "src/main.rs"
 
 [dependencies]
-timemachine-core = { path = "../timemachine-core" }
+timemachine-core = { path = "../timemachine-core", version = "0.1" }
 clap = { workspace = true }
 serde_json = { workspace = true }
 

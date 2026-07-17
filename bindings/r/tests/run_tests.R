@@ -27,7 +27,7 @@ load_cmd <- function() {
 toString_json <- function(s) {
   s <- gsub("\\\\", "\\\\\\\\", s)
   s <- gsub('"', '\\\\"', s)
-  s <- gsub("\n", "\\n", s)
+  s <- gsub("\n", "\\\\n", s)
   paste0('"', s, '"')
 }
 
