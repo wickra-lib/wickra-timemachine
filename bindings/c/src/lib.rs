@@ -27,11 +27,11 @@ pub const WICKRA_TIMEMACHINE_ERR_UTF8: i32 = -2;
 /// A panic was caught at the FFI boundary.
 pub const WICKRA_TIMEMACHINE_ERR_PANIC: i32 = -3;
 
-/// An opaque handle to a search instance. Created by [`wickra_timemachine_new`] and
+/// An opaque handle to a time-machine instance. Created by [`wickra_timemachine_new`] and
 /// destroyed by [`wickra_timemachine_free`]; never dereferenced by the caller.
 ///
 /// The handle caches the most recent command's response in `pending` so the
-/// two-call length protocol does not run the (potentially expensive) evolution
+/// two-call length protocol does not run the (potentially expensive) re-fold
 /// twice. The cache is keyed on the raw command bytes and cleared once the
 /// response has been delivered.
 pub struct WickraTimeMachine {
@@ -50,7 +50,7 @@ unsafe fn opt_str<'a>(ptr: *const c_char) -> Option<&'a str> {
     unsafe { CStr::from_ptr(ptr) }.to_str().ok()
 }
 
-/// Construct a search handle from a spec JSON (`"{}"` defers configuration to a
+/// Construct a time-machine handle from a spec JSON (`"{}"` defers configuration to a
 /// later `set_spec`). Returns null on a null / non-UTF-8 / invalid spec. Free it
 /// with [`wickra_timemachine_free`].
 ///
@@ -72,7 +72,7 @@ pub unsafe extern "C" fn wickra_timemachine_new(
     result.ok().flatten().unwrap_or(ptr::null_mut())
 }
 
-/// Destroy a search handle. Null is a no-op.
+/// Destroy a time-machine handle. Null is a no-op.
 ///
 /// # Safety
 /// `handle` must be null or a handle previously returned by
