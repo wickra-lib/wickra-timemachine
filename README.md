@@ -30,7 +30,7 @@
 trades + funding, rewound to any moment, reconstructed in O(1) via deterministic
 re-fold.**
 
-> **Part of the [Wickra ecosystem](https://github.com/wickra-lib):** the Time
+> **Part of the [Wickra ecosystem](https://github.com/wickra-lib):** the same data-driven core and ten-language binding surface also power [wickra-exchange](https://github.com/wickra-lib/wickra-exchange), [wickra-backtest](https://github.com/wickra-lib/wickra-backtest), [wickra-terminal](https://github.com/wickra-lib/wickra-terminal) and 20 more — see [the full list](https://github.com/wickra-lib).
 > Machine folds recorded market feeds from
 > [`wickra-exchange`](https://github.com/wickra-lib/wickra-exchange) through the
 > [`wickra-backtest`](https://github.com/wickra-lib/wickra-backtest) replay
