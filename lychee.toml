@@ -22,4 +22,6 @@ exclude = [
     "^https?://pypi\\.org/project/wickra-timemachine",
     "^https?://www\\.npmjs\\.com/package/wickra-timemachine",
     "^https?://pkg\\.go\\.dev/github\\.com/wickra-lib/wickra-timemachine-go",
+    "^https?://www\\.nuget\\.org/packages/Wickra\\.TimeMachine",
+    "^https?://central\\.sonatype\\.com/artifact/org\\.wickra/wickra-timemachine",
 ]

@@ -3,13 +3,24 @@
 </p>
 
 [![Built on Wickra](https://img.shields.io/badge/built%20on-wickra-3b82f6)](https://github.com/wickra-lib/wickra)
-[![CI](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/ci.yml/badge.svg)](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/codeql.yml/badge.svg)](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/codeql.yml)
 [![Status](https://img.shields.io/badge/status-pre--release-orange)](https://github.com/wickra-lib/wickra-timemachine)
-[![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
-[![OpenSSF Scorecard](https://img.shields.io/badge/OpenSSF-Scorecard-3b82f6)](https://scorecard.dev/viewer/?uri=github.com/wickra-lib/wickra-timemachine)
-[![Deterministic across 10 languages](https://img.shields.io/badge/deterministic%20across-10%20languages-3b82f6)](#use-in-any-language)
-[![Docs](https://img.shields.io/badge/docs-wickra.org-3b82f6)](https://wickra.org)
+[![CI](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/ci.svg)](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/ci.yml)
+[![CodeQL](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/codeql.svg)](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/codeql.yml)
+[![codecov](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/codecov.svg)](https://codecov.io/gh/wickra-lib/wickra-timemachine)
+[![GitHub release](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/release.svg)](https://github.com/wickra-lib/wickra-timemachine/releases/latest)
+[![crates.io](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/crates.svg)](https://crates.io/crates/wickra-timemachine)
+[![PyPI](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/pypi.svg)](https://pypi.org/project/wickra-timemachine/)
+[![npm](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/npm.svg)](https://www.npmjs.com/package/wickra-timemachine)
+[![NuGet](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/nuget.svg)](https://www.nuget.org/packages/Wickra.TimeMachine)
+[![Maven Central](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/maven.svg)](https://central.sonatype.com/artifact/org.wickra/wickra-timemachine)
+[![Go module](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/go.svg)](https://pkg.go.dev/github.com/wickra-lib/wickra-timemachine-go)
+[![R-universe](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/r-universe.svg)](https://wickra-lib.r-universe.dev)
+[![License: MIT OR Apache-2.0](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/license.svg)](#license)
+[![OpenSSF Scorecard](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/scorecard.svg)](https://scorecard.dev/viewer/?uri=github.com/wickra-lib/wickra-timemachine)
+[![OpenSSF Best Practices](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/best-practices.svg)](https://www.bestpractices.dev)
+[![Build provenance](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/provenance.svg)](https://github.com/wickra-lib/wickra-timemachine/attestations)
+[![Docs](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/docs.svg)](https://wickra.org)
+[![Verified across 10 languages](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/verified.svg)](golden/)
 
 ---
 
@@ -176,3 +187,26 @@ at your option. Unless you explicitly state otherwise, any contribution
 intentionally submitted for inclusion in this work, as defined in the Apache-2.0
 license, shall be dual-licensed as above, without any additional terms or
 conditions.
+
+---
+
+<p align="center">
+  <a href="https://github.com/wickra-lib/wickra-timemachine">
+    <img alt="GitHub stars" src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/stars.svg">
+  </a>
+  <a href="https://github.com/wickra-lib/wickra-timemachine/network/members">
+    <img alt="GitHub forks" src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/forks.svg">
+  </a>
+  <a href="https://github.com/wickra-lib/wickra-timemachine/issues">
+    <img alt="GitHub issues" src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/issues.svg">
+  </a>
+</p>
+
+<p align="center">
+  Built on <a href="https://github.com/wickra-lib/wickra">Wickra</a>. If it saved you time, the cheapest way to say thanks is to ⭐ the repo.
+</p>
+
+<p align="center">
+  <img alt="wickra-timemachine star history" width="640"
+       src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/star-history.svg">
+</p>
