@@ -29,7 +29,7 @@ clap = { version = "4", features = ["derive"] }
 # Wickra ecosystem. `wickra-core` ships on crates.io; the exchange feeds and the
 # backtest replay engine are consumed as git dependencies (version-pinned so
 # cargo-deny does not flag a wildcard) until their first crates.io release.
-wickra-core = "0.9"
+wickra-core = "1.0"
 wickra-exchange-core = { git = "https://github.com/wickra-lib/wickra-exchange", version = "0.1" }
 wickra-exchange = { git = "https://github.com/wickra-lib/wickra-exchange", version = "0.1" }
 wickra-backtest = { git = "https://github.com/wickra-lib/wickra-backtest", version = "0.1" }
