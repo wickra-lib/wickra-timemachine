@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://wickra.org"><img src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/wickra-banner.webp?v=514" alt="Wickra Time Machine — scrub the whole crypto market like a video" width="100%"></a>
+</p>
+
 # Wickra TimeMachine — Go
 
 Go bindings for the Wickra Time Machine over its C ABI hub via cgo. A
