@@ -30,6 +30,7 @@ cargo run -p timemachine-cli -- --dataset examples/data/mini --spec examples/dat
 - **C#** — [`csharp/Seek/`](csharp/Seek/): `dotnet run --project examples/csharp/Seek`
 - **Java** — [`java/`](java/): `mvn -q compile exec:java -Dexec.mainClass=org.wickra.timemachine.examples.Seek`
 - **R** — [`r/seek.R`](r/seek.R): `R CMD INSTALL bindings/r && Rscript examples/r/seek.R`
+- **WASM** — [`wasm/scrub.html`](wasm/scrub.html): `wasm-pack build bindings/wasm --target web`, serve the repository root, then open `examples/wasm/scrub.html`
 - **C / C++** — [`c/`](c/): build the C ABI, then CMake + ctest:
 
   ```bash

@@ -1,5 +1,8 @@
 [workspace]
 resolver = "2"
+# cargo-fuzz builds this crate on its own, with sanitizer flags the workspace
+# must not inherit, so it is not a member.
+exclude = ["fuzz"]
 members = [
     "crates/timemachine-core",
     "crates/timemachine-cli",
@@ -38,7 +41,7 @@ wickra-exchange = "0.1.3"
 # any registry indicator rather than the three this repository used to hardcode.
 wickra-backtest = "0.1.4"
 cbindgen = "0.27"
-criterion = "0.8"
+criterion = { package = "codspeed-criterion-compat", version = "5.0.1", features = ["html_reports"] }
 proptest = "1"
 wasm-bindgen = "0.2"
 

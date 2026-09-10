@@ -44,6 +44,23 @@ event, seeking scales to the whole market. The core is exposed as a
 **JSON-over-C-ABI data API** (`command_json`) in **Rust, Python, Node.js, WASM,
 C, C++, C#, Go, Java and R**, plus a reference CLI.
 
+```rust
+use timemachine_core::TimeMachine;
+
+// A timeline over a recorded universe: ten book levels, a bounded tape, and
+// any registry indicator folded on each symbol's trade price.
+let mut tm = TimeMachine::new(r#"{
+    "book_depth": 10,
+    "tape_cap": 64,
+    "indicators": [{"name": "Rsi", "params": [14]},
+                   {"name": "Macd", "params": [12, 26, 9]}],
+    "snapshot_interval": 256
+}"#)?;
+
+tm.load(&events_jsonl)?;
+let snapshot = tm.seek(1_700_000_000)?;   // the whole market at that instant
+```
+
 ## Status
 
 Early development (0.1.0, unreleased). The re-fold core, the reference CLI, the
@@ -141,12 +158,34 @@ examples/                 one runnable example per language
 fuzz/                     libFuzzer targets (spec parse, event fold, seek, command)
 ```
 
-## Building from source
+## Building everything from source
 
 ```bash
-cargo build
-cargo test
+cargo build --workspace --all-features                 # Rust core + CLI + C ABI
+(cd bindings/python && maturin develop --release)      # Python
+(cd bindings/node   && npm ci && npm run build)        # Node
+(cd bindings/wasm   && wasm-pack build --target web)   # WASM
+(cd bindings/csharp && dotnet build)                   # C#
+(cd bindings/go     && go build ./...)                 # Go
+(cd bindings/java   && mvn -q package)                 # Java
+R CMD INSTALL bindings/r                               # R
 ```
+
+The C-ABI consumers (C/C++, C#, Go, Java, R) need the C ABI library first —
+`cargo build --release -p wickra-timemachine-c` — on the loader path.
+
+## Testing
+
+```bash
+cargo test --workspace --all-features
+cargo clippy --workspace --all-targets --all-features -- -D warnings
+cargo fmt --all --check
+```
+
+Every binding replays the same golden seeks from [`golden/`](golden/) and must
+produce the identical bytes; that corpus is the cross-language contract, not a
+per-language approximation. `python scripts/check_binding_surface.py` asserts
+the ten surfaces stayed in step.
 
 ## Benchmarks
 
@@ -156,9 +195,18 @@ Machine re-folds a multi-symbol universe to a target instant. See
 
 ## Requirements
 
-- Rust 1.86+ (MSRV). The Time Machine depends on `wickra-core` (crates.io) and,
-  as git dependencies, the `wickra-exchange` feeds and the `wickra-backtest`
-  replay engine.
+- **Rust 1.86+** — the workspace MSRV; the Node binding needs **Rust 1.88**.
+- **Python 3.9+** — the Python binding.
+- **Node 22+** — the Node binding.
+- **Go 1.23+** — the Go binding.
+- **Java 22+** — the Java binding.
+- **R 2.10+** — the R package.
+- **.NET 8+** — the C# binding.
+- A **C11 / C++17** compiler with CMake for the C and C++ examples.
+
+The Time Machine depends on `wickra-core` for the indicator types,
+`wickra-exchange` for the event types and `wickra-backtest` for the name ->
+indicator registry. All three come from crates.io.
 
 ## Security
 
@@ -170,11 +218,40 @@ folds untrusted feeds under explicit depth/tape/anchor bounds.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Disclaimer
+## Ecosystem
 
-Wickra Time Machine is a research tool, provided "as is" without warranty of any
-kind. It reconstructs recorded market microstructure for analysis; nothing here is
-financial advice, and trading carries risk of loss.
+Part of the [Wickra](https://github.com/wickra-lib/wickra) family — each one a
+data-driven core with a CLI and the same ten-language binding surface:
+
+- [**wickra**](https://github.com/wickra-lib/wickra) — main library (Rust core + Python / Node.js / WASM bindings + a C ABI for C / C++ / C# / Go / Java / R)
+- [**wickra-playground**](https://github.com/wickra-lib/wickra-playground) — a polyglot strategy playground: one StrategySpec live side by side in Python, Rust, JS and Go, entirely in the browser
+- [**wickra-exchange**](https://github.com/wickra-lib/wickra-exchange) — unified market-data + execution across ten crypto exchanges
+- [**wickra-backtest**](https://github.com/wickra-lib/wickra-backtest) — event-driven backtester over the Wickra core
+- [**wickra-terminal**](https://github.com/wickra-lib/wickra-terminal) — the trading terminal: a TUI and a browser renderer over the stack
+- [**wickra-xray**](https://github.com/wickra-lib/wickra-xray) — market-microstructure explorer: footprint, order-book heatmap, liquidation map, funding/OI divergence
+- [**wickra-radar**](https://github.com/wickra-lib/wickra-radar) — perp-universe alert radar: OI delta, funding flip, book imbalance, liquidation clusters, OI/price divergence
+- [**wickra-copilot**](https://github.com/wickra-lib/wickra-copilot) — local market copilot grounded in real order-book, liquidation and funding microstructure
+- [**wickra-shazam**](https://github.com/wickra-lib/wickra-shazam) — match an asset's current microstructure fingerprint against its entire history
+- [**wickra-benchmark**](https://github.com/wickra-lib/wickra-benchmark) — reproducible, golden-verified benchmark suite — recompute any (strategy, dataset, report) in ten languages and confirm it byte-for-byte
+- [**wickra-strategy-ci**](https://github.com/wickra-lib/wickra-strategy-ci) — Jest for trading strategies: golden-pin the report, catch regressions in CI, property-test against fuzzed data
+- [**wickra-verify**](https://github.com/wickra-lib/wickra-verify) — confirm or refute a claimed backtest report against its strategy and data, in ten languages
+- [**wickra-proof**](https://github.com/wickra-lib/wickra-proof) — Proof-of-Backtest: deterministic (spec, data) → report + blake3 hash, recomputable byte-for-byte in ten languages
+- [**wickra-zk**](https://github.com/wickra-lib/wickra-zk) — prove a backtest zero-knowledge — on-chain-verifiable performance without revealing the data or the strategy
+- [**wickra-impact**](https://github.com/wickra-lib/wickra-impact) — the backtester that knows you would have moved the market: agent-based fills on the real historical L2 order book
+- [**wickra-darwin**](https://github.com/wickra-lib/wickra-darwin) — evolutionary strategy search at millions of backtests per second, mutating and crossing JSON specs across the 514-indicator space
+- [**wickra-gym**](https://github.com/wickra-lib/wickra-gym) — a Gymnasium-compatible, microstructure-aware backtest environment with O(1) steps for deterministic RL rollouts
+- [**wickra-feature-store**](https://github.com/wickra-lib/wickra-feature-store) — OHLCV and microstructure streams into ML-ready feature matrices over 514 O(1) streaming indicators
+- [**wickra-genome**](https://github.com/wickra-lib/wickra-genome) — a vector database of the whole market: every asset a 514-dim live vector, for similarity search, clustering and anomaly detection
+- [**wickra-synth**](https://github.com/wickra-lib/wickra-synth) — deterministic synthetic market microstructure: OHLCV, order book, trades and funding from a single seed
+- [**wickra-compile**](https://github.com/wickra-lib/wickra-compile) — compile a strategy spec into a standalone deployable: a WASM module, a self-contained binary, or a `no_std` artifact
+- [**wickra-embed**](https://github.com/wickra-lib/wickra-embed) — allocation-free, `no_std` streaming indicators for bare-metal and HFT, byte-for-byte identical to the core
+- [**wickra-pico**](https://github.com/wickra-lib/wickra-pico) — the O(1) indicator core running bare-metal on a $5 Raspberry Pi Pico — the LED blinks on the EMA cross
+
+The screener's own guides live in [`docs/`](docs/) beside the code; its site,
+with the in-browser demo and the benchmark figures, is at
+[screener.wickra.org](https://screener.wickra.org). The indicator library's
+reference is at [docs.wickra.org](https://docs.wickra.org) and the org landing
+page at [wickra.org](https://wickra.org).
 
 ## License
 
@@ -210,3 +287,9 @@ conditions.
   <img alt="wickra-timemachine star history" width="640"
        src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/star-history.svg">
 </p>
+
+## Disclaimer
+
+Wickra Time Machine is a research tool, provided "as is" without warranty of any
+kind. It reconstructs recorded market microstructure for analysis; nothing here is
+financial advice, and trading carries risk of loss.

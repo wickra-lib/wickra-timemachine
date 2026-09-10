@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>wickra-timemachine WASM — scrub a timeline</title>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; color: #1d1d1d; }
+    h1 { margin-bottom: .25rem; }
+    .meta { color: #666; margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 1rem; font-variant-numeric: tabular-nums; }
+    th, td { border: 1px solid #ddd; padding: .5rem .75rem; text-align: right; }
+    th:first-child, td:first-child { text-align: left; }
+    th { background: #fafafa; }
+    code { background: #f4f4f4; padding: .1rem .25rem; border-radius: .2rem; font-size: .9em; }
+    pre { background: #f6f8fa; padding: .75rem; border-radius: .3rem; overflow-x: auto; }
+    input[type=range] { width: 100%; }
+    #status { margin-top: 1rem; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>wickra-timemachine WASM — scrub a timeline</h1>
+  <p class="meta">
+    The same example every other language carries, with the one thing only a
+    browser can add: drag the slider and every position re-folds the whole
+    market from the start. There is no interpolation and no cached frame — a
+    seek is a deterministic re-fold, which is why dragging backwards costs the
+    same as dragging forwards and lands on the identical state.
+  </p>
+
+  <p><input id="scrub" type="range" min="10" max="30" step="10" value="10" disabled /></p>
+  <p id="status">Loading WASM module…</p>
+
+  <table id="state" hidden>
+    <thead><tr><th>Field</th><th>Value</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <pre id="raw" hidden></pre>
+
+  <script type="module">
+    import init, { TimeMachine, version }
+      from "../../bindings/wasm/pkg/wickra_timemachine_wasm.js";
+
+    const trade = (ts, price, qty, side) => JSON.stringify({
+      ts,
+      symbol: "SYM",
+      feed: {
+        kind: "market",
+        type: "trade",
+        symbol: { base: "SYM", quote: "USDT" },
+        price: String(price),
+        quantity: String(qty),
+        aggressor: side,
+        timestamp: ts,
+      },
+    });
+
+    const FEED = [
+      trade(10, "100.0", "1.0", "Buy"),
+      trade(20, "105.0", "2.0", "Sell"),
+      trade(30, "110.0", "1.5", "Buy"),
+    ].join("\n");
+
+    const status = document.getElementById("status");
+    const scrub = document.getElementById("scrub");
+    let tm = null;
+
+    function render(ts) {
+      const snapshot = JSON.parse(tm.command(JSON.stringify({ cmd: "seek", ts })));
+      const symbol = snapshot.symbols?.SYM ?? {};
+
+      const body = document.querySelector("#state tbody");
+      body.replaceChildren();
+      const rows = [
+        ["ts", snapshot.ts],
+        ["last", symbol.last ?? "—"],
+        ["tape length", (symbol.tape ?? []).length],
+      ];
+      for (const [label, value] of rows) {
+        const tr = document.createElement("tr");
+        for (const cell of [label, value]) {
+          const td = document.createElement("td");
+          td.textContent = String(cell);
+          tr.append(td);
+        }
+        body.append(tr);
+      }
+      document.getElementById("state").hidden = false;
+
+      const raw = document.getElementById("raw");
+      raw.textContent = JSON.stringify(snapshot, null, 2);
+      raw.hidden = false;
+
+      status.textContent = `re-folded to ts ${ts} — wickra-timemachine ${version()}.`;
+    }
+
+    await init();
+    tm = new TimeMachine("{}");
+    tm.command(JSON.stringify({ cmd: "load", data: FEED }));
+    scrub.disabled = false;
+    scrub.addEventListener("input", () => {
+      try {
+        render(Number(scrub.value));
+      } catch (err) {
+        status.textContent = `Error: ${err}`;
+      }
+    });
+    render(Number(scrub.value));
+  </script>
+</body>
+</html>
