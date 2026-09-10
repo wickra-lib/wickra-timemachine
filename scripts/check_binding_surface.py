@@ -107,9 +107,9 @@ BINDINGS: dict[str, tuple[list[str], dict[str, str]]] = {
     "r": (
         ["bindings/r/R/timemachine.R", "bindings/r/NAMESPACE"],
         {
-            "new": r"(?m)^wkscreen_new\s*<-\s*function",
-            "command": r"(?m)^wkscreen_command\s*<-\s*function",
-            "version": r"(?m)^wkscreen_version\s*<-\s*function",
+            "new": r"(?m)^wktimemachine_new\s*<-\s*function",
+            "command": r"(?m)^wktimemachine_command\s*<-\s*function",
+            "version": r"(?m)^wktimemachine_version\s*<-\s*function",
         },
     ),
     # The C++ hull is a separate reach over the same header, and it is the one
