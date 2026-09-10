@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **The C++ example's `load` was refused on every run, and it reported success
+  anyway.** `loadCommand()` escaped a quote correctly and then wrote a *literal*
+  newline into a JSON string, which the parser refuses as a control character,
+  so the seek always ran against an empty timeline. It printed a byte count
+  either way, so `seekpp` passed in ctest while doing nothing: 60 bytes of
+  `{"ok":false,"error":"no data loaded"}` reads exactly like a small snapshot.
+  The C example beside it escapes the newline as two characters, and so do the
+  Node, Python, Go, Rust, R and Java ones -- the C++ example was alone. It now
+  escapes correctly (266 bytes, matching the C example byte for byte) and fails
+  loudly unless the snapshot carries SYM's last trade price, the same value the
+  Java example checks.
+
+- **The C++ example now goes through the C++ hull.** It called the C functions
+  directly and rebuilt the two-call length protocol by hand -- the very thing
+  `wickra_timemachine.hpp` exists to remove -- which left the shipped C++
+  surface built by nothing. Verified by running both: the C and C++ examples
+  print byte-identical output.
+
 - **Every C++ hull used the include guard `WICKRA_SCREENER_HPP`.** The C headers
   beside them are guarded correctly; only the `.hpp` files shared one name, so
   including two of the family's headers in the same translation unit dropped the
