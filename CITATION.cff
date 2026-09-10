@@ -2,9 +2,12 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "wickra-timemachine"
 abstract: >-
-  A streaming trading terminal built on the Wickra core: one data-driven core
-  exposed in ten languages, with a native TUI and a Web front-end as a selectable
-  renderer. Panels emit view-models, so one core logic drives every front-end.
+  Deterministic market replay built on the Wickra core: a recorded universe of
+  order-book, trade and funding events is re-folded to any past timestamp, so
+  the full microstructure state of every symbol at that instant -- book, tape,
+  footprint, funding and streaming indicators -- is reconstructed rather than
+  interpolated, byte-identically on every run and in every binding. Exposed as
+  a JSON-over-C-ABI data API in ten languages.
 type: software
 authors:
   - alias: kingchenc
@@ -16,7 +19,8 @@ license:
   - Apache-2.0
 keywords:
   - trading
-  - terminal
-  - tui
-  - streaming
-  - charts
+  - market-replay
+  - order-book
+  - microstructure
+  - determinism
+  - finance
