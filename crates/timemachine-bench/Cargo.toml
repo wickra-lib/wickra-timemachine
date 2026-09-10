@@ -10,7 +10,7 @@ authors.workspace = true
 publish = false
 
 [dependencies]
-timemachine-core = { path = "../timemachine-core", version = "0.1" }
+timemachine-core = { path = "../timemachine-core", version = "0.1.0", default-features = false }
 
 [dev-dependencies]
 criterion = { workspace = true }

@@ -14,7 +14,7 @@ cargo build -p wickra-timemachine-c --release
 
 This produces `wickra_timemachine.{dll,so,dylib}` (and a static library) under
 `target/release/`. The header is committed at
-[`include/wickra_timemachine.h`](include/wickra_timemachine.h) and regenerated with:
+[`include/wickra_timemachine.h`](https://github.com/wickra-lib/wickra-timemachine/blob/main/bindings/c/include/wickra_timemachine.h) and regenerated with:
 
 ```bash
 cbindgen --config cbindgen.toml --crate wickra-timemachine-c --output include/wickra_timemachine.h
@@ -56,5 +56,5 @@ report here and in every other Wickra TimeMachine binding.
 
 ## License
 
-Dual-licensed under either [MIT](../../LICENSE-MIT) or
-[Apache-2.0](../../LICENSE-APACHE), at your option.
+Dual-licensed under either [MIT](https://github.com/wickra-lib/wickra-timemachine/blob/main/LICENSE-MIT) or
+[Apache-2.0](https://github.com/wickra-lib/wickra-timemachine/blob/main/LICENSE-APACHE), at your option.

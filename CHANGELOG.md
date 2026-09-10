@@ -9,6 +9,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **The CI Java example step compiled a file that is not there.** The `examples`
+  job was ported from the screener, whose Java example is a single
+  `examples/java/Scan.java` built with `javac`. This repository ships a Maven
+  project instead, so the step compiled a missing file and then asserted on
+  output the example never prints. It now builds the binding into the local
+  repository and runs the example through `mvn exec:exec`, the way the example's
+  own javadoc documents -- verified by running it.
+
+- **Dependabot watched directories that do not exist**, so it reported nothing
+  and the silence read as calm. An `npm` entry watched a `/web` Vue/Vite
+  renderer this repository does not have; `pip` did not cover
+  `/.github/requirements` and `npm` did not cover `/examples/node`.
+
+- **The workspace's own core was pinned as a range.** `timemachine-core` was
+  named six times as `version = "0.1"` -- a caret range -- and the root manifest
+  carried no `[workspace.dependencies]` entry for it at all. A published
+  `timemachine-cli` 0.1.0 would have accepted `timemachine-core` 0.1.99, a crate
+  resolving against a core it was never built against, in a workspace whose
+  whole point is that the pieces move together. It also hid the line from
+  `bump_version.py` and `check_version_sync.py`, both of which look for the
+  exact version.
+
+- **`release.yml` overwrote the binding READMEs before packing.** Three steps
+  copied the root README over `bindings/python/README.md` (wheel and sdist) and
+  `bindings/node/README.md`. They date from when the bindings had no README of
+  their own; they do now, one per registry, and `check_readme_links.py` exists to
+  keep their links absolute because a relative link is dead on PyPI and npm. The
+  copy threw that away and shipped the root README, whose links are relative by
+  design. The remaining relative links in the C, C#, Go and WASM READMEs are
+  absolute now.
+
+- **The Python wheel would have shipped without its licence texts.**
+  `bindings/python/` carried neither `LICENSE-MIT` nor `LICENSE-APACHE`, so
+  maturin had nothing to include, while every crate and the release archive
+  carry both.
+
+- **`SECURITY.md` named a support policy for releases that do not exist yet.**
+  It promised fixes for "the latest `0.x` release line" where there is no
+  released line; it now says plainly that nothing is published and names `0.1.0`
+  as the first version that will be.
+
+- **The bench could not measure the sequential path it advertises.** It took the
+  core with default features on -- and `default = ["parallel"]` -- so its own
+  `parallel` feature was a no-op and `--no-default-features` changed nothing. In
+  the feature store the manifest comment even said "default features off
+  (inherited from the workspace edge)", which the workspace edge did not do.
+
 - **The README said seeking reconstructs state with "no snapshots"** while
   `TimelineSpec::snapshot_interval` drops a re-fold anchor every 256 events by
   default. The anchors are real; what is true is that none is ever handed back

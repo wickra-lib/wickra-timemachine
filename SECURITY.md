@@ -8,13 +8,14 @@ trust boundaries and the split between the native and browser renderers.
 
 ## Supported versions
 
-This project is pre-release. Security fixes target the `main` branch and the most
-recent published version once a release exists.
+Nothing is published yet. Security fixes target `main`, and will carry into
+`0.1.0` -- the version the manifests declare and the first that will be
+released. No earlier version exists to support.
 
 | Version | Supported |
 |---------|-----------|
 | `main`  | ✅        |
-| `0.1.0` (upcoming) | ✅ |
+| `0.1.0` (unreleased) | ✅ |
 
 ## Reporting a vulnerability
 
