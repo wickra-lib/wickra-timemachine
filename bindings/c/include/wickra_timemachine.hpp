@@ -11,15 +11,15 @@
 //
 //     #include <wickra_timemachine.hpp>
 //
-//     wickra::TimeMachine handle(R"({"universe":["AAA"], ... })");
-//     std::string report = handle.command(R"({"cmd":"scan","data":{...}})");
+//     wickra::TimeMachine tm(R"({"book_depth":10,"tape_cap":64})");
+//     std::string snapshot = tm.command(R"({"cmd":"seek","ts":20})");
 //
 // The timemachine is data-driven, so this wrapper deliberately stops at strings:
 // the spec and the report are JSON, and which JSON library a caller uses is
 // their choice, not this header's.
 
-#ifndef WICKRA_SCREENER_HPP
-#define WICKRA_SCREENER_HPP
+#ifndef WICKRA_TIMEMACHINE_HPP
+#define WICKRA_TIMEMACHINE_HPP
 
 #include <cstddef>
 #include <cstdint>
@@ -37,7 +37,7 @@ class TimeMachineError : public std::runtime_error {
   explicit TimeMachineError(const std::string& what) : std::runtime_error(what) {}
 };
 
-/// An owning handle to a timemachine built from a scan spec.
+/// An owning handle to a timemachine built from a spec.
 ///
 /// Move-only, because the underlying handle is a unique resource: copying it
 /// would free the same pointer twice.
@@ -114,4 +114,4 @@ class TimeMachine {
 
 }  // namespace wickra
 
-#endif  // WICKRA_SCREENER_HPP
+#endif  // WICKRA_TIMEMACHINE_HPP

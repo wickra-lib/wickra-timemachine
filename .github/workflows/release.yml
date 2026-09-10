@@ -829,7 +829,7 @@ jobs:
             cargo install wickra-timemachine
             pip install wickra-timemachine
             npm install wickra-timemachine
-            dotnet add package Wickra.Darwin
+            dotnet add package Wickra.TimeMachine
             go get github.com/wickra-lib/wickra-timemachine/bindings/go
             ```
 
@@ -846,7 +846,7 @@ jobs:
             R (r-universe):
 
             ```r
-            install.packages("wickrafeaturestore", repos = "https://wickra-lib.r-universe.dev")
+            install.packages("wickratimemachine", repos = "https://wickra-lib.r-universe.dev")
             ```
 
             ### Attached assets
