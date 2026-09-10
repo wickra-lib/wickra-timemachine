@@ -21,10 +21,45 @@ The `TimelineSpec` lists them as `IndicatorRef`s:
 }
 ```
 
-Each `IndicatorRef` resolves to a `wickra_core::Indicator` through the same
-registry the `wickra-backtest` engine uses — the names and parameter order are
-identical, so an indicator behaves the same here as in a backtest. An unknown
-`name` is rejected at construction with `UnknownIndicator`.
+Each `IndicatorRef` resolves through the same registry the `wickra-backtest`
+engine uses — the names and parameter order are identical, so an indicator
+behaves the same here as in a backtest. An unknown `name`, or a parameter set the
+registry rejects, is refused at construction with `UnknownIndicator`.
+
+The registry validates the name and its parameters together, so multi-parameter
+indicators work as they do everywhere else:
+
+```json
+{"name": "Macd", "params": [12, 26, 9]}
+```
+
+### What the re-fold cannot drive
+
+The fold sees trade prints, not OHLC candles, and hands the indicators the print
+alone: each is widened onto a flat bar — open, high, low and close all the trade
+price, the volume its size — which is what a single trade's bar is.
+
+Everything the bar alone drives therefore works. The families that read something
+else do not, and are **refused by name** rather than accepted and left returning
+nothing for ever:
+
+| Family | What it would need | Example |
+| --- | --- | --- |
+| pairwise | a reference series | `Beta`, `PearsonCorrelation` |
+| order book | an order-book snapshot | `Microprice` |
+| trade flow | the individual trades of a bar | `CumulativeVolumeDelta` |
+| quote-relative flow | trades quoted against the book | `EffectiveSpread` |
+| derivatives | a derivatives tick | `FundingRate` |
+| breadth | the market cross-section | `AdvanceDecline` |
+
+The Time Machine does reconstruct an order book and a trade tape — they are
+snapshot fields of their own — but it does not feed them to the indicators, so
+the refusal is honest rather than a limitation of the data:
+
+```
+Microprice reads an order-book snapshot, which the re-fold does not hand the
+indicators; it would return nothing on every event
+```
 
 ## Keys
 

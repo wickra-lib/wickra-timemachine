@@ -3,7 +3,7 @@
 use serde::{Deserialize, Serialize};
 
 use crate::error::{Error, Result};
-use crate::indicator_set::is_known_indicator;
+use crate::indicator_set::check;
 
 fn default_book_depth() -> usize {
     10
@@ -93,15 +93,11 @@ impl TimelineSpec {
             return Err(Error::BadSpec("snapshot_interval must be > 0".into()));
         }
         for ind in &self.indicators {
-            if !is_known_indicator(&ind.name) {
-                return Err(Error::UnknownIndicator(ind.name.clone()));
-            }
-            if ind.params.len() != 1 {
-                return Err(Error::BadSpec(format!(
-                    "{} takes exactly one parameter (period)",
-                    ind.name
-                )));
-            }
+            // One check, not two: the registry validates the name and its
+            // parameters together. The arity rule that used to sit here --
+            // "exactly one parameter (period)" -- was true of the three names
+            // the old allowlist carried and false of `Macd(12, 26, 9)`.
+            check(&ind.name, &ind.params)?;
         }
         Ok(())
     }

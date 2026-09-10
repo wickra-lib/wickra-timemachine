@@ -46,14 +46,20 @@ add a test that uses mainnet or real keys.
 - **Production code only** — no mocks outside `#[cfg(test)]`, no TODO stubs, and
   no defensive branches that can never run (they fail coverage).
 
-## Adding a panel or a source
+## Adding an event kind or an indicator
 
-A new **panel** implements the `Panel` trait in `crates/timemachine-core/src/panels/`,
-adds a `PanelView` variant in `src/view.rs`, and gets a widget in the TUI and a
-canvas renderer in the Web front-end — the core stays the single source of truth.
-A new **data source** implements the `DataSource` trait in
-`crates/timemachine-core/src/source/`, registers in `build_source`, and ships a
-golden replay fixture. See `docs/PANELS.md` and `docs/SOURCES.md`.
+A new **event kind** is a variant of `Feed` in
+`crates/timemachine-core/src/event.rs`, is applied in `SymbolState::apply`, and
+appears in the snapshot that `seek` reconstructs — the core stays the single
+source of truth, and every binding sees it without changing. It ships with a
+replay fixture in `golden/`, because the whole claim of this repository is that
+a re-fold to an instant is byte-identical.
+
+A new **indicator** needs no code here at all: names resolve through the
+`wickra-backtest` registry, which is the ecosystem's only name -> indicator
+factory. See [`docs/INDICATORS.md`](docs/INDICATORS.md) for what a name and its
+parameters mean, and [`docs/DETERMINISM.md`](docs/DETERMINISM.md) for why the
+fold order is fixed.
 
 ## Developer Certificate of Origin
 

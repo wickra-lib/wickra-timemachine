@@ -15,6 +15,8 @@ thiserror = { workspace = true }
 rust_decimal = { workspace = true }
 wickra-core = { workspace = true }
 wickra-exchange-core = { workspace = true }
+# The name -> indicator registry.
+wickra-backtest = { workspace = true }
 rayon = { workspace = true, optional = true }
 
 [dev-dependencies]

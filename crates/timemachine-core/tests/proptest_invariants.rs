@@ -44,7 +44,7 @@ fn ev_strategy() -> impl Strategy<Value = Ev> {
 fn build_feed(events: &[Ev]) -> String {
     // Open with a multi-level snapshot so book invariants have something to fold.
     let mut lines = vec![String::from(
-        r#"{"ts":0,"symbol":"SYM","feed":{"kind":"market","type":"book_snapshot","symbol":{"base":"SYM","quote":"USDT"},"last_update_id":1,"bids":[{"price":"90","quantity":"2"},{"price":"80","quantity":"1"}],"asks":[{"price":"110","quantity":"2"},{"price":"120","quantity":"1"}]}}"#,
+        r#"{"ts":0,"symbol":"SYM","feed":{"kind":"market","type":"book_snapshot","symbol":{"base":"SYM","quote":"USDT"},"last_update_id":1,"bids":[{"price":"90","quantity":"2"},{"price":"80","quantity":"1"}],"asks":[{"price":"110","quantity":"2"},{"price":"120","quantity":"1"}],"timestamp":0}}"#,
     )];
     for (i, ev) in events.iter().enumerate() {
         let ts = (i64::try_from(i).unwrap() + 1) * 10;
@@ -60,7 +60,7 @@ fn build_feed(events: &[Ev]) -> String {
                 ask_price,
                 ask_qty,
             } => format!(
-                r#"{{"ts":{ts},"symbol":"SYM","feed":{{"kind":"market","type":"book_delta","symbol":{{"base":"SYM","quote":"USDT"}},"first_update_id":2,"final_update_id":2,"bids":[{{"price":"{bid_price}","quantity":"{bid_qty}"}}],"asks":[{{"price":"{ask_price}","quantity":"{ask_qty}"}}]}}}}"#,
+                r#"{{"ts":{ts},"symbol":"SYM","feed":{{"kind":"market","type":"book_delta","symbol":{{"base":"SYM","quote":"USDT"}},"first_update_id":2,"final_update_id":2,"bids":[{{"price":"{bid_price}","quantity":"{bid_qty}"}}],"asks":[{{"price":"{ask_price}","quantity":"{ask_qty}"}}],"timestamp":{ts}}}}}"#,
             ),
         };
         lines.push(line);
