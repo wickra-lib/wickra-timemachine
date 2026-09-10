@@ -434,7 +434,8 @@ jobs:
           export WKTIMEMACHINE_INC="${WKTIMEMACHINE_INC//\\//}"
           export WKTIMEMACHINE_LIB="${WKTIMEMACHINE_LIB//\\//}"
           if command -v cygpath >/dev/null 2>&1; then
-            export PATH="$(cygpath -u "$WKTIMEMACHINE_LIB"):$PATH"
+            WKTIMEMACHINE_LIB_UNIX=$(cygpath -u "$WKTIMEMACHINE_LIB")
+            export PATH="$WKTIMEMACHINE_LIB_UNIX:$PATH"
           else
             export LD_LIBRARY_PATH="$WKTIMEMACHINE_LIB:$LD_LIBRARY_PATH"
             export DYLD_LIBRARY_PATH="$WKTIMEMACHINE_LIB:$DYLD_LIBRARY_PATH"
