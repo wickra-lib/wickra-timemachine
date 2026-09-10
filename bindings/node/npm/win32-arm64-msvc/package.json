@@ -4,7 +4,9 @@
   "description": "Native binding for wickra-timemachine (Windows arm64 MSVC). Installed automatically as an optional dependency of wickra-timemachine on matching platforms.",
   "main": "wickra-timemachine.win32-arm64-msvc.node",
   "files": [
-    "wickra-timemachine.win32-arm64-msvc.node"
+    "wickra-timemachine.win32-arm64-msvc.node",
+    "LICENSE-MIT",
+    "LICENSE-APACHE"
   ],
   "license": "MIT OR Apache-2.0",
   "engines": {

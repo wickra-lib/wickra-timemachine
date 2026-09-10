@@ -4,7 +4,9 @@
   "description": "Native binding for wickra-timemachine (Linux x64 GNU). Installed automatically as an optional dependency of wickra-timemachine on matching platforms.",
   "main": "wickra-timemachine.linux-x64-gnu.node",
   "files": [
-    "wickra-timemachine.linux-x64-gnu.node"
+    "wickra-timemachine.linux-x64-gnu.node",
+    "LICENSE-MIT",
+    "LICENSE-APACHE"
   ],
   "license": "MIT OR Apache-2.0",
   "engines": {

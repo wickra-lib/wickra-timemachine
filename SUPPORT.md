@@ -5,8 +5,8 @@ Thanks for using `wickra-timemachine`. Here is where to go for help.
 ## Questions and usage help
 
 - Read the [README](README.md), the [architecture guide](ARCHITECTURE.md),
-  the [panels guide](docs/PANELS.md), the [sources guide](docs/SOURCES.md) and the
-  [renderers guide](docs/RENDERERS.md).
+  the [seek guide](docs/SEEK.md), the [snapshot guide](docs/SNAPSHOTS.md) and the
+  [determinism guide](docs/DETERMINISM.md).
 - Browse the runnable [`examples/`](examples/).
 - Open a [GitHub Discussion](https://github.com/wickra-lib/wickra-timemachine/discussions)
   for questions and ideas.

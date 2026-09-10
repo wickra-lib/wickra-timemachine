@@ -51,4 +51,44 @@ stopifnot(identical(snap, snap2))
 err <- tryCatch(wktimemachine_new("{ not valid json"), error = function(e) e)
 stopifnot(inherits(err, "error"))
 
+
+## Streaming equals batch: `play` streams frames; `seek` re-folds each instant
+## independently, and the two must agree.
+##
+## timemachine-core proves the two agree in Rust; this checks the boundary the R
+## binding crosses. That equality is the whole claim of the engine -- a seek is a
+## deterministic re-fold, not an interpolation -- so a binding that breaks it
+## breaks the product, not a detail.
+
+play_from <- 10
+play_to <- 30
+play_step <- 10
+
+play_machine <- function() {
+  tm <- wktimemachine_new("{}")
+  wktimemachine_command(tm, load_cmd())
+  tm
+}
+
+seek_at <- function(tm, ts) {
+  wktimemachine_command(tm, paste0('{"cmd":"seek","ts":', ts, "}"))
+}
+
+play_tm <- play_machine()
+played <- wktimemachine_command(play_tm, paste0(
+  '{"cmd":"play","from":', play_from, ',"to":', play_to, ',"step":', play_step, "}"
+))
+
+frames <- vapply(seq(play_from, play_to, by = play_step),
+                 function(ts) seek_at(play_tm, ts), "")
+one_by_one <- paste0("[", paste(frames, collapse = ","), "]")
+
+stopifnot(identical(played, one_by_one))
+
+## A re-fold must not depend on where the previous seek left off, which is what
+## makes scrubbing a timeline meaningful.
+first_seek <- seek_at(play_tm, play_to)
+seek_at(play_tm, play_from)
+stopifnot(identical(seek_at(play_tm, play_to), first_seek))
+
 cat("wickra-timemachine R tests passed\n")

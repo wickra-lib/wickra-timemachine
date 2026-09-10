@@ -179,7 +179,8 @@ impl SymbolState {
                 self.last = print.price;
                 self.tape.push(print.clone());
                 self.footprint.add(print);
-                self.indicators.update(dec_f64(print.price));
+                self.indicators
+                    .update(dec_f64(print.price), dec_f64(print.quantity));
             }
             Feed::Market(Event::Ticker(ticker)) => self.last = ticker.last,
             Feed::Market(Event::BookSnapshot(snap)) => self.book.apply_snapshot(snap),
@@ -304,6 +305,7 @@ mod tests {
                 BookLevel::new(dec!(99), dec!(2)),
             ],
             asks: vec![BookLevel::new(dec!(101), dec!(1))],
+            timestamp: 0,
         });
         assert_eq!(book.spread(), Some(dec!(1)));
         book.apply_delta(&BookDelta {
@@ -312,6 +314,7 @@ mod tests {
             final_update_id: 2,
             bids: vec![BookLevel::new(dec!(100), dec!(0))],
             asks: vec![],
+            timestamp: 0,
         });
         assert_eq!(book.top_bids(1), vec![(dec!(99), dec!(2))]);
     }
