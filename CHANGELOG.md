@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **The README said seeking reconstructs state with "no snapshots"** while
+  `TimelineSpec::snapshot_interval` drops a re-fold anchor every 256 events by
+  default. The anchors are real; what is true is that none is ever handed back
+  as the answer and nothing is interpolated — they only bound how far a backward
+  seek has to replay.
+
+- **`CITATION.cff` described the wrong project.** The abstract and keywords were
+  the terminal's, describing a TUI and a web front-end for a replay engine that
+  has neither. `CITATION.cff` is what GitHub's citation box and Zenodo quote
+  back at a reader as the project's own words, so it is the one file where a
+  wrong description is the project saying it.
+
+- **The Ecosystem section repeated two claims their own repositories had already
+  corrected**: DARWIN at "millions of backtests per second" across "the
+  514-indicator space", where its benchmark says hundreds of thousands over the
+  registry, and GENOME as "a 514-dim live vector", where the dimension is
+  whatever the spec's feature list names.
+
 - **Indicator names were a three-name allowlist while the docs promised the
   registry.** `docs/INDICATORS.md` said each `IndicatorRef` "resolves ...
   through the same registry the `wickra-backtest` engine uses"; the code was
