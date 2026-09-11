@@ -12,7 +12,7 @@
 
 use wasm_bindgen::prelude::*;
 
-use timemachine_core::TimeMachine as CoreTimeMachine;
+use wickra_timemachine_core::TimeMachine as CoreTimeMachine;
 
 /// A recorded-market time machine driven by JSON commands.
 #[wasm_bindgen]
@@ -40,12 +40,12 @@ impl TimeMachine {
     /// The library version.
     #[wasm_bindgen(js_name = version)]
     pub fn instance_version(&self) -> String {
-        timemachine_core::version().to_string()
+        wickra_timemachine_core::version().to_string()
     }
 }
 
 /// The library version.
 #[wasm_bindgen]
 pub fn version() -> String {
-    timemachine_core::version().to_string()
+    wickra_timemachine_core::version().to_string()
 }

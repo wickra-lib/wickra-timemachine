@@ -50,7 +50,7 @@ rendering â€” byte-identical to the core's `command_json` and to every binding â
 then committed verbatim:
 
 ```bash
-cargo build -p timemachine-cli --release
+cargo build -p wickra-timemachine --release
 BIN=target/release/wickra-timemachine
 
 $BIN --dataset golden/data/mini  --spec golden/specs/mini.json         --seek 1700000600 --format json > golden/expected/mini.json

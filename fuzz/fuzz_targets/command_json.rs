@@ -3,7 +3,7 @@
 //! failure comes back as an `Err` or an in-band `{"ok":false,...}` response.
 
 use libfuzzer_sys::fuzz_target;
-use timemachine_core::TimeMachine;
+use wickra_timemachine_core::TimeMachine;
 
 fuzz_target!(|data: &[u8]| {
     if let Ok(cmd) = std::str::from_utf8(data) {

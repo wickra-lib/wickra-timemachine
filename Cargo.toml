@@ -23,7 +23,7 @@ authors = ["wickra-lib"]
 
 [workspace.dependencies]
 # Workspace-internal core, referenced by the CLI, bench and bindings.
-timemachine-core = { version = "0.1.0", path = "crates/timemachine-core" }
+wickra-timemachine-core = { version = "0.1.0", path = "crates/timemachine-core" }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 rust_decimal = { version = "1", features = ["serde"] }

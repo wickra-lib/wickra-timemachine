@@ -55,7 +55,7 @@ stopifnot(inherits(err, "error"))
 ## Streaming equals batch: `play` streams frames; `seek` re-folds each instant
 ## independently, and the two must agree.
 ##
-## timemachine-core proves the two agree in Rust; this checks the boundary the R
+## wickra-timemachine-core proves the two agree in Rust; this checks the boundary the R
 ## binding crosses. That equality is the whole claim of the engine -- a seek is a
 ## deterministic re-fold, not an interpolation -- so a binding that breaks it
 ## breaks the product, not a detail.

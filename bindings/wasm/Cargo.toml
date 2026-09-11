@@ -36,7 +36,7 @@ missing_panics_doc = "allow"
 # inherited workspace dependency. Default features off means no rayon (the
 # re-fold is single-threaded here), so a wasm build is byte-identical to the
 # native one — the exact cross-language golden check.
-timemachine-core = { path = "../../crates/timemachine-core", version = "0.1.0", default-features = false }
+wickra-timemachine-core = { path = "../../crates/timemachine-core", version = "0.1.0", default-features = false }
 wasm-bindgen = "0.2"
 
 # `wickra-exchange-core` (a transitive dependency via the time-machine core, for

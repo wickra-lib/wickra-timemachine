@@ -1,6 +1,6 @@
 //! The wickra-timemachine C ABI — the hub every C-capable language links against.
 //!
-//! The surface is tiny and JSON-shaped, exactly like [`timemachine_core::TimeMachine`]:
+//! The surface is tiny and JSON-shaped, exactly like [`wickra_timemachine_core::TimeMachine`]:
 //! construct a handle from a spec JSON, drive it with command JSONs (`load`,
 //! `seek`, `play`, `state_at`, `version`), read back response JSONs, and free the
 //! handle. No time-machine type crosses the boundary by value — the handle is
@@ -18,7 +18,7 @@ use core::ffi::{c_char, CStr};
 use std::panic::{catch_unwind, AssertUnwindSafe};
 use std::ptr;
 
-use timemachine_core::TimeMachine;
+use wickra_timemachine_core::TimeMachine;
 
 /// A required pointer argument (`handle` or `cmd_json`) was null.
 pub const WICKRA_TIMEMACHINE_ERR_NULL: i32 = -1;

@@ -2,7 +2,7 @@
 
 // `play` streams frames; `state_at` re-folds each instant independently.
 //
-// `timemachine-core` proves the two agree in Rust, but that says nothing about the
+// `wickra-timemachine-core` proves the two agree in Rust, but that says nothing about the
 // boundary this binding crosses: a binding that dropped a frame from the played
 // array, or mis-serialised one, would hand back a sequence that looks plausible and
 // is not the engine's.

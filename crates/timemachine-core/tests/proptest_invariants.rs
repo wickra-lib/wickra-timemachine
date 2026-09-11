@@ -3,7 +3,7 @@
 //! is deterministic across independent instances.
 
 use proptest::prelude::*;
-use timemachine_core::TimeMachine;
+use wickra_timemachine_core::TimeMachine;
 
 const BOOK_DEPTH: usize = 5;
 const TAPE_CAP: usize = 8;

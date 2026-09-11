@@ -8,7 +8,7 @@ namespace WickraTimeMachine.Tests;
 /// <summary>
 /// <c>play</c> streams frames; <c>seek</c> re-folds each instant independently.
 ///
-/// <c>timemachine-core</c> proves the two agree in Rust, but that says nothing
+/// <c>wickra-timemachine-core</c> proves the two agree in Rust, but that says nothing
 /// about the boundary this binding crosses: a binding that dropped a frame from
 /// the played array, or mis-serialised one, would hand back a sequence that
 /// looks plausible and is not the engine's.

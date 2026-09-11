@@ -6,7 +6,7 @@
 use std::fs;
 use std::path::PathBuf;
 
-use timemachine_core::TimeMachine;
+use wickra_timemachine_core::TimeMachine;
 
 fn loaded() -> TimeMachine {
     let g = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../golden");

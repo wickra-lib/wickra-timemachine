@@ -33,7 +33,7 @@ It is a living document — update it when the attack surface changes.
 
 ## Guarantees the code is held to
 
-- **No secrets in the core or view-models.** `timemachine-core` produces view-models
+- **No secrets in the core or view-models.** `wickra-timemachine-core` produces view-models
   (values, series, colours) only; it never embeds key material, and the WASM
   binding compiles without any secret-bearing code path.
 - **Exact market arithmetic.** Price and quantity use `rust_decimal::Decimal`, not

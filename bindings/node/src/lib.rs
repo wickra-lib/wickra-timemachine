@@ -8,7 +8,7 @@ use napi_derive::napi;
 
 /// A recorded-market time machine driven by JSON commands.
 #[napi]
-pub struct TimeMachine(timemachine_core::TimeMachine);
+pub struct TimeMachine(wickra_timemachine_core::TimeMachine);
 
 #[napi]
 impl TimeMachine {
@@ -16,7 +16,7 @@ impl TimeMachine {
     #[napi(constructor)]
     #[allow(clippy::needless_pass_by_value)]
     pub fn new(spec_json: String) -> napi::Result<Self> {
-        timemachine_core::TimeMachine::new(&spec_json)
+        wickra_timemachine_core::TimeMachine::new(&spec_json)
             .map(TimeMachine)
             .map_err(|e| napi::Error::from_reason(e.to_string()))
     }
@@ -34,6 +34,6 @@ impl TimeMachine {
     /// The crate version.
     #[napi]
     pub fn version(&self) -> &'static str {
-        timemachine_core::version()
+        wickra_timemachine_core::version()
     }
 }

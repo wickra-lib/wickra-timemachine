@@ -3,7 +3,7 @@
 use std::fmt::Write as _;
 use std::fs;
 
-use timemachine_core::{MarketSnapshot, SymbolSnapshot, TimeMachine};
+use wickra_timemachine_core::{MarketSnapshot, SymbolSnapshot, TimeMachine};
 
 use crate::args::{Cli, Format};
 
