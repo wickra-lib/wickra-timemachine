@@ -1,6 +1,6 @@
 /* `play` streams frames; `seek` re-folds each instant independently.
  *
- * `timemachine-core` proves the two agree in Rust, but that says nothing about
+ * `wickra-timemachine-core` proves the two agree in Rust, but that says nothing about
  * the boundary a C caller crosses. Every reach behind this ABI asks for the
  * response length first and reads it second, so a command that is not a pure
  * function of its payload runs twice per call. `load` is exactly that — it

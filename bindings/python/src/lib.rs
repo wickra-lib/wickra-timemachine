@@ -13,7 +13,7 @@
 use pyo3::exceptions::{PyRuntimeError, PyValueError};
 use pyo3::prelude::*;
 
-use timemachine_core::TimeMachine;
+use wickra_timemachine_core::TimeMachine;
 
 /// A recorded-market time machine driven by JSON commands.
 ///
@@ -45,7 +45,7 @@ impl PyTimeMachine {
     /// The library version.
     #[staticmethod]
     fn version() -> &'static str {
-        timemachine_core::version()
+        wickra_timemachine_core::version()
     }
 }
 

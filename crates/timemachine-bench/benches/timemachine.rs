@@ -4,7 +4,7 @@
 
 use criterion::{criterion_group, criterion_main, BenchmarkId, Criterion, Throughput};
 use std::hint::black_box;
-use timemachine_core::TimeMachine;
+use wickra_timemachine_core::TimeMachine;
 
 const SPEC: &str = r#"{"book_depth":10,"tape_cap":64,"indicators":[{"name":"Sma","params":[14]}],"snapshot_interval":256}"#;
 

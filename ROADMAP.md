@@ -8,7 +8,7 @@ requests. Status below is updated as phases complete.
 
 0. **Scaffold** — workspace, governance, supply-chain config, `.github`
    scaffolding. *In progress.*
-1. **`timemachine-core`** — the recorded-universe model and the deterministic
+1. **`wickra-timemachine-core`** — the recorded-universe model and the deterministic
    `seek(t)` re-fold over `wickra-exchange` feeds and the `wickra-backtest`
    replay engine, exposed through the `command_json` boundary. Near-total
    coverage via inline tests.

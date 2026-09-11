@@ -1,7 +1,7 @@
 # Architecture
 
 Wickra Time Machine is a hybrid product: one data-driven Rust core,
-`timemachine-core`, wrapped by a reference CLI, ten language bindings, and a web
+`wickra-timemachine-core`, wrapped by a reference CLI, ten language bindings, and a web
 scrubber frontend. Everything the Time Machine does is reachable through one
 seam — a handle plus a `command_json` string.
 

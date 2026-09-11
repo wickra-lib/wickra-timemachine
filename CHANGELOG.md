@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **The two published crates carried names the release could not upload.**
+  `timemachine-core` and `timemachine-cli` are outside the org's crates.io token scope,
+  which creates new crates under the `wickra-` prefix only; `cargo publish` on
+  either name returns 403 at upload while `--dry-run` passes, and because the
+  publish jobs run in parallel the release would have landed on PyPI, npm,
+  NuGet, Maven Central and the Go mirror without ever reaching crates.io.
+  `release.yml` already published `-p wickra-timemachine`, a package that did not
+  exist. The core is now `wickra-timemachine-core` and the CLI crate
+  `wickra-timemachine`, matching the binary it ships and the shape of every
+  released sibling. Directories keep their names; only the packages and the
+  `wickra_timemachine_core` path moved. The same audit ran across the family (xray
+  paid for this with its first tag).
+
 - **The napi bump split a crate in two and the build stopped.**
   `napi-derive-backend` 6.1.3 pulls `convert_case` 0.12 while `napi-derive`
   3.6.3 still uses 0.11, and two versions of a crate are two unrelated types --
@@ -117,10 +130,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   renderer this repository does not have; `pip` did not cover
   `/.github/requirements` and `npm` did not cover `/examples/node`.
 
-- **The workspace's own core was pinned as a range.** `timemachine-core` was
+- **The workspace's own core was pinned as a range.** `wickra-timemachine-core` was
   named six times as `version = "0.1"` -- a caret range -- and the root manifest
   carried no `[workspace.dependencies]` entry for it at all. A published
-  `timemachine-cli` 0.1.0 would have accepted `timemachine-core` 0.1.99, a crate
+  `wickra-timemachine` 0.1.0 would have accepted `wickra-timemachine-core` 0.1.99, a crate
   resolving against a core it was never built against, in a workspace whose
   whole point is that the pieces move together. It also hid the line from
   `bump_version.py` and `check_version_sync.py`, both of which look for the
@@ -233,10 +246,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Repository scaffold: governance, supply-chain configuration (`deny.toml`,
   `lychee.toml`, `osv-scanner.toml`, `repo-metadata.toml`), the Rust workspace
-  (`timemachine-core`, `timemachine-cli`, `timemachine-bench`), and the
+  (`wickra-timemachine-core`, `wickra-timemachine`, `timemachine-bench`), and the
   `wickra-core` / `wickra-exchange` / `wickra-backtest` dependencies (state,
   recorded feeds and the O(1) replay engine the Time Machine re-folds over).
-- `timemachine-core`: the deterministic re-fold engine — the `Record` / `Feed`
+- `wickra-timemachine-core`: the deterministic re-fold engine — the `Record` / `Feed`
   wire format, the `TimelineSpec` (book depth, tape cap, indicator set, anchor
   interval), per-symbol event folding with bounded tape and footprint, the
   `seek` / `play` re-fold (anchored binary search, `rayon` symbol fan-out), and

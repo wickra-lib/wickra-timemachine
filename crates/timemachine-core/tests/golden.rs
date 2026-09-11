@@ -7,7 +7,7 @@
 use std::fs;
 use std::path::PathBuf;
 
-use timemachine_core::TimeMachine;
+use wickra_timemachine_core::TimeMachine;
 
 fn root() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../golden")

@@ -1,5 +1,5 @@
 [package]
-name = "timemachine-core"
+name = "wickra-timemachine-core"
 description = "Deterministic market time machine: reconstruct the full microstructure state of a whole crypto universe at any past moment via O(1) re-fold."
 version.workspace = true
 edition.workspace = true

@@ -1,4 +1,4 @@
-//! # timemachine-core
+//! # wickra-timemachine-core
 //!
 //! The deterministic core of Wickra Time Machine: reconstruct the full
 //! microstructure state — order book, trade tape, footprint, funding and scalar

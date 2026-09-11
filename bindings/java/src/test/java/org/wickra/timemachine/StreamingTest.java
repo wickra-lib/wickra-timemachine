@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * {@code play} streams frames; {@code seek} re-folds each instant independently.
  *
- * <p>{@code timemachine-core} proves the two agree in Rust, but that says
+ * <p>{@code wickra-timemachine-core} proves the two agree in Rust, but that says
  * nothing about the boundary this binding crosses: a binding that dropped a
  * frame from the played array, or mis-serialised one, would hand back a sequence
  * that looks plausible and is not the engine's.

@@ -10,14 +10,14 @@ authors.workspace = true
 publish = false
 
 [dependencies]
-timemachine-core = { path = "../timemachine-core", version = "0.1.0", default-features = false }
+wickra-timemachine-core = { path = "../timemachine-core", version = "0.1.0", default-features = false }
 
 [dev-dependencies]
 criterion = { workspace = true }
 
 [features]
 default = ["parallel"]
-parallel = ["timemachine-core/parallel"]
+parallel = ["wickra-timemachine-core/parallel"]
 
 [[bench]]
 name = "timemachine"

@@ -18,7 +18,7 @@ the examples reconstruct the same `SYM` last price of `110`. See
 A recorded dataset and a spec are also in [`data/`](data/) for use with the CLI:
 
 ```bash
-cargo run -p timemachine-cli -- --dataset examples/data/mini --spec examples/data/specs/mini.json --seek 1700000600 --format json
+cargo run -p wickra-timemachine -- --dataset examples/data/mini --spec examples/data/specs/mini.json --seek 1700000600 --format json
 ```
 
 ## Per language

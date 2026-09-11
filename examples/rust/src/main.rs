@@ -7,7 +7,7 @@
 //! cargo run --manifest-path examples/rust/Cargo.toml
 //! ```
 
-use timemachine_core::TimeMachine;
+use wickra_timemachine_core::TimeMachine;
 
 const FEED: &str = concat!(
     r#"{"ts":10,"symbol":"SYM","feed":{"kind":"market","type":"trade","symbol":{"base":"AAA","quote":"USDT"},"price":"100","quantity":"1","aggressor":"Buy","timestamp":10}}"#,
@@ -21,7 +21,7 @@ fn main() {
     let snapshot: serde_json::Value =
         serde_json::from_str(&tm.command_json(r#"{"cmd":"seek","ts":20}"#).expect("seek")).unwrap();
 
-    println!("wickra-timemachine {}", timemachine_core::version());
+    println!("wickra-timemachine {}", wickra_timemachine_core::version());
     println!("snapshot ts: {}", snapshot["ts"]);
     println!("symbols: {}", snapshot["symbols"].as_object().unwrap().len());
     println!("SYM last: {}", snapshot["symbols"]["SYM"]["last"]);

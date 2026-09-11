@@ -39,7 +39,7 @@ re-fold.**
 > stored state is ever handed back as the answer; the periodic re-fold anchors
 > only bound how far a backward seek has to replay.
 
-Wickra Time Machine is one data-driven core, `timemachine-core`: point it at a
+Wickra Time Machine is one data-driven core, `wickra-timemachine-core`: point it at a
 recorded universe, `seek(t)`, and it re-folds every symbol's orderbook, tape and
 funding state deterministically to that instant. Because the engine is O(1) per
 event, seeking scales to the whole market. The core is exposed as a
@@ -47,7 +47,7 @@ event, seeking scales to the whole market. The core is exposed as a
 C, C++, C#, Go, Java and R**, plus a reference CLI.
 
 ```rust
-use timemachine_core::TimeMachine;
+use wickra_timemachine_core::TimeMachine;
 
 // A timeline over a recorded universe: ten book levels, a bounded tape, and
 // any registry indicator folded on each symbol's trade price.

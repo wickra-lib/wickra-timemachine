@@ -1,7 +1,9 @@
 //! Serde round-trips of every wire type, the indicator key format, and the
 //! spec-validation error paths — the contract the language bindings depend on.
 
-use timemachine_core::{parse_records_jsonl, IndicatorRef, Record, TimeMachine, TimelineSpec};
+use wickra_timemachine_core::{
+    parse_records_jsonl, IndicatorRef, Record, TimeMachine, TimelineSpec,
+};
 
 const FEED: &str = concat!(
     r#"{"ts":10,"symbol":"AAA-USDT","feed":{"kind":"market","type":"book_snapshot","symbol":{"base":"AAA","quote":"USDT"},"last_update_id":1,"bids":[{"price":"100.0","quantity":"2.0"}],"asks":[{"price":"100.5","quantity":"1.0"}],"timestamp":10}}"#,

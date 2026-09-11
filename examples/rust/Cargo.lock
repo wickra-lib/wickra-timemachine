@@ -935,19 +935,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "timemachine-core"
-version = "0.1.0"
-dependencies = [
- "rust_decimal",
- "serde",
- "serde_json",
- "thiserror",
- "wickra-backtest",
- "wickra-core",
- "wickra-exchange-core",
-]
-
-[[package]]
 name = "tinyvec"
 version = "1.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1168,11 +1155,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "wickra-timemachine-core"
+version = "0.1.0"
+dependencies = [
+ "rust_decimal",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "wickra-backtest",
+ "wickra-core",
+ "wickra-exchange-core",
+]
+
+[[package]]
 name = "wickra-timemachine-example"
 version = "0.1.0"
 dependencies = [
  "serde_json",
- "timemachine-core",
+ "wickra-timemachine-core",
 ]
 
 [[package]]

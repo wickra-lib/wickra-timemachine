@@ -11,7 +11,7 @@ cargo-fuzz = true
 libfuzzer-sys = "0.4"
 # The core under test. Default features off so the fuzzers exercise the
 # single-threaded path (no rayon).
-timemachine-core = { path = "../crates/timemachine-core", default-features = false }
+wickra-timemachine-core = { path = "../crates/timemachine-core", default-features = false }
 
 # Detach from the parent workspace — cargo-fuzz builds this crate on its own with
 # sanitizer flags on a nightly toolchain.

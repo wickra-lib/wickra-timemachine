@@ -1640,32 +1640,7 @@ name = "timemachine-bench"
 version = "0.1.0"
 dependencies = [
  "codspeed-criterion-compat",
- "timemachine-core",
-]
-
-[[package]]
-name = "timemachine-cli"
-version = "0.1.0"
-dependencies = [
- "clap",
- "serde_json",
- "timemachine-core",
-]
-
-[[package]]
-name = "timemachine-core"
-version = "0.1.0"
-dependencies = [
- "proptest",
- "rayon",
- "rust_decimal",
- "rust_decimal_macros",
- "serde",
- "serde_json",
- "thiserror",
- "wickra-backtest",
- "wickra-core",
- "wickra-exchange-core",
+ "wickra-timemachine-core",
 ]
 
 [[package]]
@@ -1924,11 +1899,36 @@ dependencies = [
 ]
 
 [[package]]
+name = "wickra-timemachine"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "serde_json",
+ "wickra-timemachine-core",
+]
+
+[[package]]
 name = "wickra-timemachine-c"
 version = "0.1.0"
 dependencies = [
  "serde_json",
- "timemachine-core",
+ "wickra-timemachine-core",
+]
+
+[[package]]
+name = "wickra-timemachine-core"
+version = "0.1.0"
+dependencies = [
+ "proptest",
+ "rayon",
+ "rust_decimal",
+ "rust_decimal_macros",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "wickra-backtest",
+ "wickra-core",
+ "wickra-exchange-core",
 ]
 
 [[package]]
@@ -1938,7 +1938,7 @@ dependencies = [
  "napi",
  "napi-build",
  "napi-derive",
- "timemachine-core",
+ "wickra-timemachine-core",
 ]
 
 [[package]]
@@ -1946,7 +1946,7 @@ name = "wickra-timemachine-python"
 version = "0.1.0"
 dependencies = [
  "pyo3",
- "timemachine-core",
+ "wickra-timemachine-core",
 ]
 
 [[package]]
@@ -1956,8 +1956,8 @@ dependencies = [
  "getrandom 0.2.17",
  "getrandom 0.3.4",
  "getrandom 0.4.3",
- "timemachine-core",
  "wasm-bindgen",
+ "wickra-timemachine-core",
 ]
 
 [[package]]
