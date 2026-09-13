@@ -15,7 +15,7 @@ fn build_feed(symbols: usize, events_per_symbol: usize) -> String {
     for s in 0..symbols {
         let sym = format!("S{s:03}-USDT");
         lines.push(format!(
-            r#"{{"ts":0,"symbol":"{sym}","feed":{{"kind":"market","type":"book_snapshot","symbol":{{"base":"S{s:03}","quote":"USDT"}},"last_update_id":1,"bids":[{{"price":"100","quantity":"5"}}],"asks":[{{"price":"101","quantity":"5"}}]}}}}"#,
+            r#"{{"ts":0,"symbol":"{sym}","feed":{{"kind":"market","type":"book_snapshot","symbol":{{"base":"S{s:03}","quote":"USDT"}},"last_update_id":1,"bids":[{{"price":"100","quantity":"5"}}],"asks":[{{"price":"101","quantity":"5"}}],"timestamp":0}}}}"#,
         ));
         for i in 0..events_per_symbol {
             let ts = (i64::try_from(i).unwrap() + 1) * 10;

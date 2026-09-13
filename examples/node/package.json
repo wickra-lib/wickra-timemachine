@@ -5,5 +5,5 @@
   "description": "A runnable Node.js example for wickra-timemachine.",
   "type": "commonjs",
   "scripts": { "start": "node seek.js" },
-  "dependencies": { "wickra-timemachine": "^0.1.0" }
+  "dependencies": { "wickra-timemachine": "file:../../bindings/node" }
 }
