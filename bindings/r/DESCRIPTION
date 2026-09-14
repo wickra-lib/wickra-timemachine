@@ -14,4 +14,4 @@ Encoding: UTF-8
 NeedsCompilation: yes
 SystemRequirements: the wickra-timemachine C ABI shared library (WKTIMEMACHINE_LIB)
     and its header (WKTIMEMACHINE_INC).
-RoxygenNote: 7.3.2
+Config/roxygen2/version: 8.0.0

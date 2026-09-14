@@ -14,8 +14,6 @@ the product, not a detail.
 import json
 import pathlib
 
-import pytest
-
 from wickra_timemachine import TimeMachine
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
@@ -32,9 +30,11 @@ def _machine() -> TimeMachine:
     return tm
 
 
-@pytest.mark.skipif(not (GOLDEN / "specs" / "mini.json").exists(),
-                    reason="golden fixtures absent")
 def test_play_equals_repeated_state_at() -> None:
+    # The corpus is committed; a missing one is a failure, not a skip. Plain
+    # asserts rather than pytest marks: this module also runs on the Python
+    # 3.9 row, which has no pytest (see run_without_pytest.py).
+    assert (GOLDEN / "specs" / "mini.json").exists(), "golden corpus not found"
     tm = _machine()
     played = json.loads(
         tm.command(json.dumps({"cmd": "play", "from": FROM, "to": TO, "step": STEP}))
@@ -47,9 +47,8 @@ def test_play_equals_repeated_state_at() -> None:
     assert len(played) == 5, "the mini corpus spans five frames at this step"
 
 
-@pytest.mark.skipif(not (GOLDEN / "specs" / "mini.json").exists(),
-                    reason="golden fixtures absent")
 def test_a_re_seek_to_the_same_instant_is_byte_identical() -> None:
+    assert (GOLDEN / "specs" / "mini.json").exists(), "golden corpus not found"
     tm = _machine()
     cmd = json.dumps({"cmd": "state_at", "ts": TO})
     first = tm.command(cmd)
