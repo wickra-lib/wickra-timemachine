@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-09-14
+
 ### Fixed
 
 - **CI is green again.** The benchmark panicked before measuring anything:
@@ -310,4 +312,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation: `README`, per-binding READMEs, and the top-level design docs
   (`ARCHITECTURE.md`, `THREAT_MODEL.md`, `BENCHMARKS.md`).
 
-[Unreleased]: https://github.com/wickra-lib/wickra-timemachine/commits/main
+[Unreleased]: https://github.com/wickra-lib/wickra-timemachine/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/wickra-lib/wickra-timemachine/releases/tag/v0.1.0

@@ -65,10 +65,10 @@ let snapshot = tm.seek(1_700_000_000)?;   // the whole market at that instant
 
 ## Status
 
-Early development (0.1.0, unreleased). The re-fold core, the reference CLI, the
+Early development (0.1.0). The re-fold core, the reference CLI, the
 ten-language binding surface, the golden corpus and the full CI matrix are in
-place; the first published release is still pending, and the web scrubber
-front-end is a later phase.
+place; 0.1.0 is the first published release, and the web scrubber front-end is
+a later phase.
 
 ## How it works
 
