@@ -1932,6 +1932,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "wickra-timemachine-example"
+version = "0.1.0"
+dependencies = [
+ "serde_json",
+ "wickra-timemachine-core",
+]
+
+[[package]]
 name = "wickra-timemachine-node"
 version = "0.1.0"
 dependencies = [

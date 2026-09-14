@@ -23,6 +23,9 @@ fn main() {
 
     println!("wickra-timemachine {}", wickra_timemachine_core::version());
     println!("snapshot ts: {}", snapshot["ts"]);
-    println!("symbols: {}", snapshot["symbols"].as_object().unwrap().len());
+    println!(
+        "symbols: {}",
+        snapshot["symbols"].as_object().unwrap().len()
+    );
     println!("SYM last: {}", snapshot["symbols"]["SYM"]["last"]);
 }
