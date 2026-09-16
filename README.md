@@ -19,18 +19,16 @@
 [![OpenSSF Scorecard](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/scorecard.svg)](https://scorecard.dev/viewer/?uri=github.com/wickra-lib/wickra-timemachine)
 [![OpenSSF Best Practices](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/best-practices.svg)](https://www.bestpractices.dev)
 [![Build provenance](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/provenance.svg)](https://github.com/wickra-lib/wickra-timemachine/attestations)
-[![Docs](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/docs.svg)](https://wickra.org)
+[![Docs](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/docs.svg)](https://timemachine.wickra.org)
 [![Verified across 10 languages](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/verified.svg)](golden/)
 
 ---
-
-# Wickra Time Machine
 
 **Scrub the whole crypto market like a video — every symbol, full orderbook +
 trades + funding, rewound to any moment, reconstructed in O(1) via deterministic
 re-fold.**
 
-> **Part of the [Wickra ecosystem](https://github.com/wickra-lib):** the same data-driven core and ten-language binding surface also power [wickra-exchange](https://github.com/wickra-lib/wickra-exchange), [wickra-backtest](https://github.com/wickra-lib/wickra-backtest), [wickra-terminal](https://github.com/wickra-lib/wickra-terminal) and 20 more — see [the full list](https://github.com/wickra-lib).
+**Part of the [Wickra ecosystem](#ecosystem):** the same data-driven core and ten-language binding surface also power [wickra-exchange](https://github.com/wickra-lib/wickra-exchange), [wickra-backtest](https://github.com/wickra-lib/wickra-backtest), [wickra-terminal](https://github.com/wickra-lib/wickra-terminal) and 20 more — see [the full list](https://github.com/wickra-lib).
 > Machine folds recorded market feeds from
 > [`wickra-exchange`](https://github.com/wickra-lib/wickra-exchange) through the
 > [`wickra-backtest`](https://github.com/wickra-lib/wickra-backtest) replay
@@ -65,10 +63,24 @@ let snapshot = tm.seek(1_700_000_000)?;   // the whole market at that instant
 
 ## Status
 
-Early development (0.1.0). The re-fold core, the reference CLI, the
+**0.1.1 — the current release.** The re-fold core, the reference CLI, the
 ten-language binding surface, the golden corpus and the full CI matrix are in
-place; 0.1.0 is the first published release, and the web scrubber front-end is
-a later phase.
+place; 0.1.0 is the first published release, and the web scrubber front-end is a
+later phase.
+
+## Documentation
+
+- [docs/SEEK.md](docs/SEEK.md) — the seek / re-fold pipeline in depth.
+- [docs/SNAPSHOTS.md](docs/SNAPSHOTS.md) — the `MarketSnapshot` output shape.
+- [docs/DATASETS.md](docs/DATASETS.md) — the recorded-universe wire format.
+- [docs/INDICATORS.md](docs/INDICATORS.md) — declaring and folding indicators.
+- [docs/DETERMINISM.md](docs/DETERMINISM.md) — why reconstruction is byte-identical.
+- [docs/Cookbook.md](docs/Cookbook.md) — task-oriented recipes.
+- [ARCHITECTURE.md](ARCHITECTURE.md) — the crates and how they fit together.
+- [BENCHMARKS.md](BENCHMARKS.md) — measured throughput and how to reproduce it.
+- [THREAT_MODEL.md](THREAT_MODEL.md) — the trust boundary and resource limits.
+- [golden/README.md](golden/README.md) — the blessed cross-language corpus.
+- Full documentation: [wickra.org](https://wickra.org).
 
 ## How it works
 
@@ -134,20 +146,6 @@ print(snap["symbols"]["BTC-USDT"]["last"])
 
 See [`examples/`](examples/) for the same program in all ten languages.
 
-## Documentation
-
-- [docs/SEEK.md](docs/SEEK.md) — the seek / re-fold pipeline in depth.
-- [docs/SNAPSHOTS.md](docs/SNAPSHOTS.md) — the `MarketSnapshot` output shape.
-- [docs/DATASETS.md](docs/DATASETS.md) — the recorded-universe wire format.
-- [docs/INDICATORS.md](docs/INDICATORS.md) — declaring and folding indicators.
-- [docs/DETERMINISM.md](docs/DETERMINISM.md) — why reconstruction is byte-identical.
-- [docs/Cookbook.md](docs/Cookbook.md) — task-oriented recipes.
-- [ARCHITECTURE.md](ARCHITECTURE.md) — the crates and how they fit together.
-- [BENCHMARKS.md](BENCHMARKS.md) — measured throughput and how to reproduce it.
-- [THREAT_MODEL.md](THREAT_MODEL.md) — the trust boundary and resource limits.
-- [golden/README.md](golden/README.md) — the blessed cross-language corpus.
-- Full documentation: [wickra.org](https://wickra.org).
-
 ## Project layout
 
 ```
@@ -189,12 +187,6 @@ produce the identical bytes; that corpus is the cross-language contract, not a
 per-language approximation. `python scripts/check_binding_surface.py` asserts
 the ten surfaces stayed in step.
 
-## Benchmarks
-
-The headline figure is **snapshots per second** — the rate at which the Time
-Machine re-folds a multi-symbol universe to a target instant. See
-[BENCHMARKS.md](BENCHMARKS.md); reproduce with `cargo bench -p timemachine-bench`.
-
 ## Requirements
 
 - **Rust 1.86+** — the workspace MSRV; the Node binding needs **Rust 1.88**.
@@ -210,15 +202,11 @@ The Time Machine depends on `wickra-core` for the indicator types,
 `wickra-exchange` for the event types and `wickra-backtest` for the name ->
 indicator registry. All three come from crates.io.
 
-## Security
+## Benchmarks
 
-See [SECURITY.md](SECURITY.md) and [THREAT_MODEL.md](THREAT_MODEL.md). The Time
-Machine reads recorded market data only — no keys, no order placement — and
-folds untrusted feeds under explicit depth/tape/anchor bounds.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+The headline figure is **snapshots per second** — the rate at which the Time
+Machine re-folds a multi-symbol universe to a target instant. See
+[BENCHMARKS.md](BENCHMARKS.md); reproduce with `cargo bench -p timemachine-bench`.
 
 ## Ecosystem
 
@@ -255,40 +243,32 @@ with the in-browser demo and the benchmark figures, is at
 reference is at [docs.wickra.org](https://docs.wickra.org) and the org landing
 page at [wickra.org](https://wickra.org).
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Security
+
+See [SECURITY.md](SECURITY.md) and [THREAT_MODEL.md](THREAT_MODEL.md). The Time
+Machine reads recorded market data only — no keys, no order placement — and
+folds untrusted feeds under explicit depth/tape/anchor bounds.
+
 ## License
 
-Dual-licensed under either of
+Licensed under either of
 
-- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
-- MIT license ([LICENSE-MIT](LICENSE-MIT))
+- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or
+  <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT license ([LICENSE-MIT](LICENSE-MIT) or <http://opensource.org/licenses/MIT>)
 
-at your option. Unless you explicitly state otherwise, any contribution
-intentionally submitted for inclusion in this work, as defined in the Apache-2.0
-license, shall be dual-licensed as above, without any additional terms or
-conditions.
+at your option. Use it, fork it, modify it, redistribute it — commercially or
+not — file issues, send pull requests; all welcome.
 
----
+### Contribution
 
-<p align="center">
-  <a href="https://github.com/wickra-lib/wickra-timemachine">
-    <img alt="GitHub stars" src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/stars.svg">
-  </a>
-  <a href="https://github.com/wickra-lib/wickra-timemachine/network/members">
-    <img alt="GitHub forks" src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/forks.svg">
-  </a>
-  <a href="https://github.com/wickra-lib/wickra-timemachine/issues">
-    <img alt="GitHub issues" src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/issues.svg">
-  </a>
-</p>
-
-<p align="center">
-  Built on <a href="https://github.com/wickra-lib/wickra">Wickra</a>. If it saved you time, the cheapest way to say thanks is to ⭐ the repo.
-</p>
-
-<p align="center">
-  <img alt="wickra-timemachine star history" width="640"
-       src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/star-history.svg">
-</p>
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
+dual licensed as above, without any additional terms or conditions.
 
 ## Disclaimer
 

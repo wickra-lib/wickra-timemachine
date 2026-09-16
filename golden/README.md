@@ -1,4 +1,4 @@
-# Golden corpus
+# Golden fixtures
 
 Fixed, deterministic recorded feeds plus the byte-exact `MarketSnapshot` JSON
 that seeking (or playing) them must reproduce. The corpus is the cross-language
