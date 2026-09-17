@@ -4,6 +4,19 @@ Runnable examples in every Wickra Time Machine language. Each one loads the same
 small recorded feed (two trades on `SYM`) and reconstructs the market snapshot at
 `ts = 20` by seeking, then prints the same summary — the cross-language guarantee:
 
+## What every example prints
+
+Runnable examples in every Wickra Time Machine language. Each one loads the same
+small recorded feed (two trades on `SYM`) and reconstructs the market snapshot at
+`ts = 20` by seeking, then prints the same summary — the cross-language guarantee:
+
+```
+wickra-timemachine 0.1.1
+snapshot ts: 20
+symbols: 1
+SYM last: 110
+```
+
 ## Rust — `examples/rust/`
 
 As the CI examples job runs it, from the repository root:
