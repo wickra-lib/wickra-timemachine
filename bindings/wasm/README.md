@@ -37,7 +37,7 @@ The output lands in `pkg/`.
 ## Quick start
 
 ```js
-import init, { TimeMachine } from "./pkg/wickra_timemachine_wasm.js";
+import init, { TimeMachine } from "wickra-timemachine-wasm";
 
 await init();
 

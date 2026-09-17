@@ -43,7 +43,7 @@ bid, and a closing funding print. Seeking to `1700000600` folds the first seven
 records: the book has bids `[100.3, 100.1, 100.0]` and ask `[100.6]`, the last
 trade is `100.3`, and `Sma(3)` over the three trade prints is `100.3`.
 
-## Blessing (regenerating expected/)
+## Blessing
 
 The expected files are produced by the CLI in its default (compact) JSON
 rendering — byte-identical to the core's `command_json` and to every binding —
