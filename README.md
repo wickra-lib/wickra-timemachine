@@ -28,14 +28,18 @@
 trades + funding, rewound to any moment, reconstructed in O(1) via deterministic
 re-fold.**
 
+> **▶ Live demos:** the backtester compiled to WebAssembly, an equity curve building bar by bar — **[backtest-live.wickra.org](https://backtest-live.wickra.org)**;
+> one StrategySpec side by side in Python, Rust, JS and Go — **[playground.wickra.org](https://playground.wickra.org)**;
+> all 514 indicators of the core over a real Binance feed — **[live.wickra.org](https://live.wickra.org)**. Zero backend, all of them.
+
 **Part of the [Wickra ecosystem](#ecosystem):** the same data-driven core and ten-language binding surface also power [wickra-exchange](https://github.com/wickra-lib/wickra-exchange), [wickra-backtest](https://github.com/wickra-lib/wickra-backtest), [wickra-terminal](https://github.com/wickra-lib/wickra-terminal) and 20 more — see [the full list](https://github.com/wickra-lib).
-> Machine folds recorded market feeds from
-> [`wickra-exchange`](https://github.com/wickra-lib/wickra-exchange) through the
-> [`wickra-backtest`](https://github.com/wickra-lib/wickra-backtest) replay
-> engine, so seeking to any past timestamp reconstructs the exact microstructure
-> state by replaying the events themselves — nothing is interpolated, and no
-> stored state is ever handed back as the answer; the periodic re-fold anchors
-> only bound how far a backward seek has to replay.
+Machine folds recorded market feeds from
+[`wickra-exchange`](https://github.com/wickra-lib/wickra-exchange) through the
+[`wickra-backtest`](https://github.com/wickra-lib/wickra-backtest) replay
+engine, so seeking to any past timestamp reconstructs the exact microstructure
+state by replaying the events themselves — nothing is interpolated, and no
+stored state is ever handed back as the answer; the periodic re-fold anchors
+only bound how far a backward seek has to replay.
 
 Wickra Time Machine is one data-driven core, `wickra-timemachine-core`: point it at a
 recorded universe, `seek(t)`, and it re-folds every symbol's orderbook, tape and
