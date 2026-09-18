@@ -1,6 +1,6 @@
 {
   "name": "wickra-timemachine",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Evolutionary strategy search over Wickra strategy specs: a seeded EvolveSpec drives a byte-identical genetic search across every language binding. Node bindings powered by Rust.",
   "author": "kingchenc <support@wickra.org>",
   "main": "index.js",
@@ -47,12 +47,12 @@
     "node": ">= 22"
   },
   "optionalDependencies": {
-    "wickra-timemachine-linux-x64-gnu": "0.1.1",
-    "wickra-timemachine-linux-arm64-gnu": "0.1.1",
-    "wickra-timemachine-darwin-x64": "0.1.1",
-    "wickra-timemachine-darwin-arm64": "0.1.1",
-    "wickra-timemachine-win32-x64-msvc": "0.1.1",
-    "wickra-timemachine-win32-arm64-msvc": "0.1.1"
+    "wickra-timemachine-linux-x64-gnu": "0.1.2",
+    "wickra-timemachine-linux-arm64-gnu": "0.1.2",
+    "wickra-timemachine-darwin-x64": "0.1.2",
+    "wickra-timemachine-darwin-arm64": "0.1.2",
+    "wickra-timemachine-win32-x64-msvc": "0.1.2",
+    "wickra-timemachine-win32-arm64-msvc": "0.1.2"
   },
   "scripts": {
     "build": "napi build --platform --release",
