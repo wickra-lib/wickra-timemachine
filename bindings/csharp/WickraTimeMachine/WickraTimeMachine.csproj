@@ -10,7 +10,7 @@
     <AssemblyName>Wickra.TimeMachine</AssemblyName>
 
     <PackageId>Wickra.TimeMachine</PackageId>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <Authors>kingchenc</Authors>
     <Description>Reconstruct a recorded crypto market's microstructure state at any past moment for .NET over the Wickra C ABI: a deterministic re-fold yields a byte-identical MarketSnapshot across every language binding.</Description>
     <PackageLicenseExpression>MIT OR Apache-2.0</PackageLicenseExpression>
