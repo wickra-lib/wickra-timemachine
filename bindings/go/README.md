@@ -4,14 +4,14 @@
 
 [![CI](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/ci.svg)](https://github.com/wickra-lib/wickra-timemachine/actions/workflows/ci.yml)
 [![codecov](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/codecov.svg)](https://codecov.io/gh/wickra-lib/wickra-timemachine)
-[![Go module](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/go.svg)](https://pkg.go.dev/github.com/wickra-lib/wickra-timemachine/bindings/go)
+[![Go module](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/go.svg)](https://pkg.go.dev/github.com/wickra-lib/wickra-timemachine-go)
 [![License: MIT OR Apache-2.0](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/license.svg)](https://github.com/wickra-lib/wickra-timemachine#license)
 
 # Wickra Time Machine — Go
 
 ---
 
-**Part of the [Wickra ecosystem](#ecosystem): — for Go. `go get github.com/wickra-lib/wickra-timemachine/bindings/go` — over the C ABI via cgo, prebuilt library bundled in the module.**
+**Part of the [Wickra ecosystem](#ecosystem): — for Go. `go get github.com/wickra-lib/wickra-timemachine-go` — over the C ABI via cgo, prebuilt library bundled in the module.**
 
 Go bindings for the Wickra Time Machine over its C ABI hub via cgo. A
 `TimeMachine` is built from a spec JSON and driven over a JSON boundary, so a
