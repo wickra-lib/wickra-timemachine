@@ -67,7 +67,7 @@ let snapshot = tm.seek(1_700_000_000)?;   // the whole market at that instant
 
 ## Status
 
-**0.1.2 — the current release.** The re-fold core, the reference CLI, the
+**0.1.3 — the current release.** The re-fold core, the reference CLI, the
 ten-language binding surface, the golden corpus and the full CI matrix are in
 place; 0.1.0 is the first published release, and the web scrubber front-end is a
 later phase.

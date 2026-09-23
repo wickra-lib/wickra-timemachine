@@ -1637,7 +1637,7 @@ dependencies = [
 
 [[package]]
 name = "timemachine-bench"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "codspeed-criterion-compat",
  "wickra-timemachine-core",
@@ -1771,9 +1771,9 @@ checksum = "ccf3ec651a847eb01de73ccad15eb7d99f80485de043efb2f370cd654f4ea44b"
 
 [[package]]
 name = "wasip2"
-version = "1.0.4+wasi-0.2.12"
+version = "1.0.1+wasi-0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b67efb37e106e55ce722a510d6b5f9c17f083e5fc79afc2badeb12cc313d9487"
+checksum = "0562428422c63773dad2c345a1882263bbf4d65cf3f42e90921f787ef5ad58e7"
 dependencies = [
  "wit-bindgen",
 ]
@@ -1836,9 +1836,9 @@ dependencies = [
 
 [[package]]
 name = "wickra-backtest"
-version = "0.1.7"
+version = "0.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e24ea1f1190291f3021373e6fbbdf263f27664fa03c8ad4f295de52274c7dc52"
+checksum = "430be1850499417f9123b0300871b8e87f757a87e3cdd55cb24dbf445bebe65d"
 dependencies = [
  "wickra-backtest-core",
  "wickra-backtest-data",
@@ -1846,9 +1846,9 @@ dependencies = [
 
 [[package]]
 name = "wickra-backtest-core"
-version = "0.1.7"
+version = "0.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42834428a01fa2de6e52a1bdec23fc85d5ede7193ae95e8e4349a8b2c8796cda"
+checksum = "1ff75dcf5ca69c5ab83db9ab237fcd32c4f505bbc6b59d7088c566bb984ca34f"
 dependencies = [
  "schemars",
  "serde",
@@ -1859,9 +1859,9 @@ dependencies = [
 
 [[package]]
 name = "wickra-backtest-data"
-version = "0.1.7"
+version = "0.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "837c3b9c33ecfb61fd80629def7b6189a44f91a3fe2359b3e91d9ff703978254"
+checksum = "3a1a27cb09ae9c9f664974df8b7979b4a3e5e37a405fecd9b755bcb9871c480d"
 dependencies = [
  "serde_json",
  "wickra-backtest-core",
@@ -1870,9 +1870,9 @@ dependencies = [
 
 [[package]]
 name = "wickra-core"
-version = "1.0.5"
+version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "911f903b829bbaf0f5e428e2126f512f3e8e04d086f72506cc6093a11182c5ef"
+checksum = "71aaaaa211d2784cad85409213fe5d64b303dd5711c91cc861ac6962ae8fea3e"
 dependencies = [
  "rayon",
  "thiserror",
@@ -1880,9 +1880,9 @@ dependencies = [
 
 [[package]]
 name = "wickra-exchange-core"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "63c62c6c64d143f955b0f36225de3d28b33bc364d9c6c20cc06fd097ac5b4c62"
+checksum = "80b085e2528517b59de0cac5c26b0ed99922f7db99bb8067245ebb9be29863d0"
 dependencies = [
  "base64",
  "hex",
@@ -1900,7 +1900,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "clap",
  "serde_json",
@@ -1909,7 +1909,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-c"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "serde_json",
  "wickra-timemachine-core",
@@ -1917,7 +1917,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-core"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "proptest",
  "rayon",
@@ -1933,7 +1933,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-example"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "serde_json",
  "wickra-timemachine-core",
@@ -1941,7 +1941,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-node"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "napi",
  "napi-build",
@@ -1951,7 +1951,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-python"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "pyo3",
  "wickra-timemachine-core",
@@ -1959,7 +1959,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-wasm"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "getrandom 0.2.17",
  "getrandom 0.3.4",
@@ -2003,9 +2003,9 @@ dependencies = [
 
 [[package]]
 name = "wit-bindgen"
-version = "0.57.1"
+version = "0.46.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ebf944e87a7c253233ad6766e082e3cd714b5d03812acc24c318f549614536e"
+checksum = "f17a85883d4e6d00e8a97c586de764dabcc06133f7f1d55dce5cdc070ad7fe59"
 
 [[package]]
 name = "wnaf"

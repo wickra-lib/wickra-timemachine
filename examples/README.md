@@ -11,7 +11,7 @@ small recorded feed (two trades on `SYM`) and reconstructs the market snapshot a
 `ts = 20` by seeking, then prints the same summary — the cross-language guarantee:
 
 ```
-wickra-timemachine 0.1.2
+wickra-timemachine 0.1.3
 snapshot ts: 20
 symbols: 1
 SYM last: 110
