@@ -38,14 +38,14 @@ clap = { version = "4", features = ["derive"] }
 # so the tree carries one `wickra-core` and one set of indicator types rather
 # than two that share none at all.
 wickra-core = "1.0"
-wickra-exchange-core = "=0.1.6"
+wickra-exchange-core = "=0.1.7"
 # The ecosystem's only name -> indicator factory: what lets a `TimelineSpec` name
 # any registry indicator rather than the three this repository used to hardcode.
 # Pinned exactly, as the released siblings pin it: cargo resolves "0.1.4" and
 # "=0.1.4" to the same crate today, but a consumer or a sibling that lands on a
 # newer patch would leave two copies of the engine in one graph, and two copies
 # do not share a BacktestReport or a Candle. Move this with the family.
-wickra-backtest = "=0.1.7"
+wickra-backtest = "=0.1.8"
 cbindgen = "0.27"
 criterion = { package = "codspeed-criterion-compat", version = "5.0.1", features = ["html_reports"] }
 proptest = "1"
