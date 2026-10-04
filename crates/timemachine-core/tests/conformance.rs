@@ -76,7 +76,7 @@ fn unknown_indicator_is_rejected() {
     let err = TimeMachine::new(r#"{"indicators":[{"name":"NoSuch","params":[5]}]}"#)
         .err()
         .expect("an unknown indicator must be rejected");
-    assert!(!err.to_string().is_empty());
+    assert_ne!(err.to_string(), "");
 }
 
 #[test]
