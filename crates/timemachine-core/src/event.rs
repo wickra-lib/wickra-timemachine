@@ -86,7 +86,7 @@ mod tests {
 
     #[test]
     fn blank_lines_are_skipped() {
-        assert!(parse_records_jsonl("\n\n  \n").unwrap().is_empty());
+        assert_eq!(parse_records_jsonl("\n\n  \n").unwrap(), Vec::new());
     }
 
     #[test]
