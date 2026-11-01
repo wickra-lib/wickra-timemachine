@@ -3,14 +3,11 @@
 [advisories]
 version = 2
 yanked = "deny"
-# Suppressed advisories (assessed as not affecting wickra-timemachine). Keep in
-# lock-step with osv-scanner.toml.
-ignore = [
-    # paste — unmaintained (not a vulnerability). A build-time proc-macro helper
-    # pulled transitively by ratatui (the TUI renderer); ratatui has not yet
-    # migrated off it. No runtime code path, no known security impact.
-    "RUSTSEC-2024-0436",
-]
+# No advisories are currently suppressed. RUSTSEC-2024-0436 (paste,
+# unmaintained) used to be ignored here for ratatui's sake; neither is in
+# Cargo.lock any more, and a suppression that matches nothing only hides the
+# next real one. Any new entry must be added to osv-scanner.toml in the same
+# commit.
 
 [licenses]
 version = 2
