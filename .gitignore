@@ -7,6 +7,10 @@ bindings/r/src/*.so
 bindings/r/src/*.dll
 **/*.node
 __pycache__
+# The extension `maturin develop` builds into the Python package; wheels are
+# built in CI and never committed.
+bindings/python/python/**/*.pyd
+bindings/python/python/**/*.so
 bindings/wasm/pkg
 web/node_modules
 web/dist
