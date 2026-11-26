@@ -1667,7 +1667,7 @@ dependencies = [
 
 [[package]]
 name = "timemachine-bench"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "codspeed-criterion-compat",
  "wickra-timemachine-core",
@@ -1936,7 +1936,7 @@ checksum = "b76d2ecef2a65e6ab8179f989d609400bc066e92c7d84a9ec7960d2a8cf79b2b"
 
 [[package]]
 name = "wickra-timemachine"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "clap",
  "serde_json",
@@ -1945,7 +1945,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-c"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "serde_json",
  "wickra-timemachine-core",
@@ -1953,7 +1953,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-core"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "proptest",
  "rayon",
@@ -1969,7 +1969,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-example"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "serde_json",
  "wickra-timemachine-core",
@@ -1977,7 +1977,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-node"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "napi",
  "napi-build",
@@ -1987,7 +1987,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-python"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "pyo3",
  "wickra-timemachine-core",
@@ -1995,7 +1995,7 @@ dependencies = [
 
 [[package]]
 name = "wickra-timemachine-wasm"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "getrandom 0.2.17",
  "getrandom 0.3.4",
