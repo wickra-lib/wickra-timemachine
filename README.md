@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://wickra.org"><img src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/wickra-banner.svg?v=514-8" alt="Wickra Time Machine — scrub the whole crypto market like a video" width="100%"></a>
+  <a href="https://wickra.org"><img src="https://raw.githubusercontent.com/wickra-lib/.github/main/profile/wickra-banner.svg?v=515-8" alt="Wickra Time Machine — scrub the whole crypto market like a video" width="100%"></a>
 </p>
 
 [![Built on Wickra](https://raw.githubusercontent.com/wickra-lib/.github/main/profile/badges/wickra-timemachine/built-on.svg)](https://github.com/wickra-lib/wickra)
@@ -30,7 +30,7 @@ re-fold.**
 
 > **▶ Live demos:** the backtester compiled to WebAssembly, an equity curve building bar by bar — **[backtest-live.wickra.org](https://backtest-live.wickra.org)**;
 > one StrategySpec side by side in Python, Rust, JS and Go — **[playground.wickra.org](https://playground.wickra.org)**;
-> all 514 indicators of the core over a real Binance feed — **[live.wickra.org](https://live.wickra.org)**. Zero backend, all of them.
+> all 515 indicators of the core over a real Binance feed — **[live.wickra.org](https://live.wickra.org)**. Zero backend, all of them.
 
 **Part of the [Wickra ecosystem](#ecosystem):** the same data-driven core and ten-language binding surface also power [wickra-exchange](https://github.com/wickra-lib/wickra-exchange), [wickra-backtest](https://github.com/wickra-lib/wickra-backtest), [wickra-terminal](https://github.com/wickra-lib/wickra-terminal) and 20 more — see [the full list](https://github.com/wickra-lib).
 Machine folds recorded market feeds from
@@ -67,7 +67,7 @@ let snapshot = tm.seek(1_700_000_000)?;   // the whole market at that instant
 
 ## Status
 
-**0.2.1 — the current release.** The re-fold core, the reference CLI, the
+**0.2.2 — the current release.** The re-fold core, the reference CLI, the
 ten-language binding surface, the golden corpus and the full CI matrix are in
 place; 0.1.0 is the first published release, and the web scrubber front-end is a
 later phase.
