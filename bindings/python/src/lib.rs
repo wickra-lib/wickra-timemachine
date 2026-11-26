@@ -51,7 +51,8 @@ impl PyTimeMachine {
 
 /// The native module (`wickra_timemachine._wickra_timemachine`).
 #[pymodule]
-fn _wickra_timemachine(module: &Bound<'_, PyModule>) -> PyResult<()> {
+#[pyo3(name = "_wickra_timemachine")]
+fn wickra_timemachine_extension(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add("__version__", env!("CARGO_PKG_VERSION"))?;
     module.add_class::<PyTimeMachine>()?;
     Ok(())
